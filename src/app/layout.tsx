@@ -54,14 +54,11 @@ const personLd = {
   knowsAbout: ["Mechanical design", "CAD automation", "Solid Edge", "Manufacturing drawings", "FEA", "CFD", "Full-stack development"],
 };
 
-// Restore the saved workspace shade before paint to avoid a flash.
-const themeScript = `try{var w=localStorage.getItem("yd-workspace");if(w==="light")document.documentElement.dataset.workspace="light"}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}

@@ -182,8 +182,8 @@
 .proj-ttl .label { font-size: 0.62em; }
 .proj-ttl .balloon { width: 2.2em; height: 2.2em; }
 .spec { margin: 0; display: grid; grid-template-columns: 6.2em minmax(0, 1fr); font-size: 0.83em; }
-.spec dt { padding: 0.5em 0.6em; font: 500 0.74em/1.5 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--annot); background: var(--paper-2); border-top: 1px solid var(--hair); }
-.spec dd { margin: 0; padding: 0.45em 0.8em; border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
+.spec dt { padding: 0.45em 0.6em; font: 500 0.74em/1.5 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--annot); background: var(--paper-2); border-top: 1px solid var(--hair); }
+.spec dd { margin: 0; padding: 0.4em 0.8em; border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
 .spec dt:first-of-type, .spec dt:first-of-type + dd { border-top: 0; }
 .spec .notes > li { margin-bottom: 0.3em; padding-left: 1.8em; }
 .spec .res { color: var(--mark); background: var(--mark-wash); }
