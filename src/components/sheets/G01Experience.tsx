@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import { experience } from "@/data/profile";
 import { sheets } from "@/data/sheets";
 import { Sec, SheetHeader } from "../SheetHeader";
-import { TechnicalCallout } from "../TechnicalCallout";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -114,12 +113,6 @@ export function G01Experience() {
               ))}
             </div>
           </div>
-        ))}
-        {experience[0].outcomes.map((o) => (
-          <TechnicalCallout key={o.label} title="Documented outcome" tone="mark" className="g01-out">
-            <div className="out-v mono">{o.value}</div>
-            <div className="label">{o.label}</div>
-          </TechnicalCallout>
         ))}
       </div>
     </>
