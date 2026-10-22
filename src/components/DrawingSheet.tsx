@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
+import { profile } from "@/data/profile";
 import type { SheetMeta } from "@/data/sheets";
 import { DrawingBorder } from "./DrawingBorder";
 import { TitleBlock } from "./TitleBlock";
@@ -21,7 +22,6 @@ type Props = {
  * and the title block becomes a collapsible panel at the top.
  */
 export function DrawingSheet({ sheets, active, panels }: Props) {
-  const sheet = sheets[active];
   return (
     <div className="sheet-sizer">
       <div className="sheet">
@@ -30,12 +30,11 @@ export function DrawingSheet({ sheets, active, panels }: Props) {
           <main id="content" className="content" tabIndex={-1}>
             <details className="tb-mobile">
               <summary>
-                <span className="label" style={{ fontSize: 10 }}>Title block</span>
-                <b>{sheet.code}</b>
-                <span className="muted">· sheet {active + 1} of {sheets.length}</span>
+                <span className="label" style={{ fontSize: 10 }}>Contact</span>
+                <span className="pill">{profile.availability}</span>
                 <ChevronDown className="chev" width={16} height={16} aria-hidden="true" />
               </summary>
-              <TitleBlock sheet={sheet} index={active} total={sheets.length} />
+              <TitleBlock />
             </details>
 
             {sheets.map((s, i) => (
@@ -53,7 +52,7 @@ export function DrawingSheet({ sheets, active, panels }: Props) {
           </main>
 
           <aside className="titleblock-wrap">
-            <TitleBlock sheet={sheet} index={active} total={sheets.length} />
+            <TitleBlock />
           </aside>
         </div>
       </div>
