@@ -86,10 +86,24 @@
 .xrefs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em; }
 
 /* ── G02 ─────────────────────────────────────────────────────────────── */
-.g02 { display: grid; grid-template-columns: minmax(0, 1fr) 620px; gap: 36px; align-items: start; }
-.g02-text { display: flex; flex-direction: column; gap: 16px; }
-.g02-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; }
-.g02-cols .prose { font-size: 0.92em; margin: 0 0 0.5em; }
+.g02 { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.8fr); gap: 32px; align-items: start; }
+.g02-col { display: flex; flex-direction: column; gap: 14px; }
+.g02-col .prose { font-size: 0.92em; margin: 0; }
+.how { gap: 10px; }
+.how .sec { margin-bottom: 0.2em; }
+.how-step { border-left: 2px solid var(--accent); padding: 0 0 0 12px; font-size: 0.86em; }
+.how-step h4 { display: flex; align-items: center; gap: 0.5em; margin: 0 0 0.3em; font: 600 1.02em var(--f-cond); letter-spacing: 0.05em; text-transform: uppercase; }
+.how-step h4 .balloon { font-size: 0.8em; border-color: var(--accent); color: var(--accent-ink); }
+.how-step p { margin: 0 0 0.35em; color: var(--ink-2); }
+.how-list { margin: 0 0 0.3em; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.15em 1.2em; }
+.how-list li { position: relative; padding-left: 0.9em; color: var(--ink); }
+.how-list li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 5px; height: 1px; background: var(--ink); }
+.how-list.tight { grid-template-columns: 1fr; font-size: 0.86em; }
+.how-list.tight li { color: var(--ink-2); }
+.how-note { font-size: 0.95em; }
+.pos-ranges { display: flex; flex-wrap: wrap; gap: 6px; }
+.pos-ranges span { border: 1px solid var(--ink-2); padding: 0.15em 0.55em; font-size: 0.92em; background: var(--paper); }
+.pos-ranges b { color: var(--accent-ink); font-weight: 600; margin-right: 0.25em; }
 .big-result { font-size: 1.5em; font-weight: 600; line-height: 1.2; color: var(--ink); margin-bottom: 0.6em; }
 .big-result small { font-size: 0.48em; letter-spacing: 0.12em; color: var(--annot); }
 .big-result span { color: var(--mark); padding: 0 0.15em; }
@@ -113,8 +127,10 @@
 
 .g02-figs { display: grid; gap: 14px; }
 .figs3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.figs3 .fig .ph .ph-label { font-size: 0.56em; padding: 0.3em 0.5em; }
+.figs3 .fig figcaption { font-size: 0.62em; gap: 0.5em; }
 
-.g02-foot { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.g02-foot { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 26px; align-items: start; }
 .g02-std .prose { font-size: 0.9em; margin: 0 0 0.5em; }
 .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .flow li { position: relative; display: flex; flex-direction: column; gap: 0.2em; padding: 0.6em 0.7em 0.7em; border: 1px solid var(--ink); background: var(--paper); }
@@ -215,7 +231,8 @@
   .g01, .g03 { display: block; }
   .g00-side { max-width: 20em; }
   .name-plate { font-size: 2.6em; }
-  .roles, .g02-cols, .g03-cols, .notes.two { display: block !important; }
+  .roles, .g03-cols, .notes.two { display: block !important; }
+  .how-list { grid-template-columns: 1fr; }
   .role + .role { margin-top: 1.2em; }
   .tl-row, .tl-axis { grid-template-columns: 6.5em minmax(0, 1fr); gap: 0.6em; }
   .tl-axis i:nth-child(even) { color: transparent; }

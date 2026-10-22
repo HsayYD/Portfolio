@@ -43,7 +43,7 @@ export const images = {
   },
   platformLayout: {
     fig: "FIG. 02.2",
-    caption: "INPUT 2D LAYOUT",
+    caption: "INPUT LAYOUT",
     src: "/images/platform-designer/input-layout.png",
     alt: "2D platform layout used as input",
     ratio: 4 / 3,
@@ -59,7 +59,7 @@ export const images = {
   },
   platformDetail: {
     fig: "FIG. 02.4",
-    caption: "DETAIL VIEW — STAIR & RAILING",
+    caption: "STAIR DETAIL",
     src: "/images/platform-designer/detail-view.png",
     alt: "Detail view of stair and railing components",
     ratio: 4 / 3,
