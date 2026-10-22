@@ -4,80 +4,24 @@ import type { SheetMeta } from "@/data/sheets";
 
 type Props = { sheet: SheetMeta; index: number; total: number };
 
-/** Projection symbol (truncated cone: end view + side view). */
-function ProjectionSymbol() {
-  return (
-    <svg viewBox="0 0 64 28" width="64" height="28" aria-hidden="true" className="tb-proj">
-      <circle cx="14" cy="14" r="10" />
-      <circle cx="14" cy="14" r="5" />
-      <path d="M2 14H26M14 2V26" className="cl" />
-      <path d="M34 6L60 10V18L34 22Z" />
-      <path d="M30 14H63" className="cl" />
-    </svg>
-  );
-}
-
 /**
- * Manufacturing-drawing title block in the bottom-right corner of the sheet,
- * laid out like a production title block:
+ * Manufacturing-drawing title block in the bottom-right corner of the sheet:
  *
- *  ┌ REV │ DESCRIPTION / STATUS                │ DRAWN │ DATE │ CHK │ DATE ┐
- *  ├──────────────────────────────────────────────────┬───────────────────┤
- *  │ Engineer:  NAME                                  │  logo / identity  │
- *  ├──────────────┬────────────┬──────────────────────┤                   │
- *  │ contact      │ Scale      │ Proj.                │                   │
- *  │              ├────────────┴──────────────────────┴───────────────────┤
- *  │              │ Subject:  SHEET TITLE                                 │
- *  │              ├────────────┬──────────┬─────────────────────┬─────────┤
- *  │ resume ↓     │ note       │ Paper    │ Drawing no.  Sheet  │ Rev     │
- *  └──────────────┴────────────┴──────────┴─────────────────────┴─────────┘
+ *  ┌──────────────────────────────────────────────────────────────────────┐
+ *  │ Engineer:  NAME                                                      │
+ *  ├──────────────┬────────────┬─────────────────────────────────────────┤
+ *  │ contact      │ Scale      │ Subject:  SHEET TITLE                   │
+ *  │              ├────────────┼──────────┬─────────────────────┬────────┤
+ *  │ resume ↓     │ note       │ Paper    │ Dwg. no.     Sheet  │ Rev.   │
+ *  └──────────────┴────────────┴──────────┴─────────────────────┴────────┘
  */
 export function TitleBlock({ sheet, index, total }: Props) {
   const { contact } = profile;
   return (
     <div className="titleblock" aria-label="Title block">
-      {/* revision / status strip */}
-      <table className="tb-strip">
-        <tbody>
-          <tr className="data">
-            <td>{profile.release.rev}</td>
-            <td className="desc">
-              <span className="status-lamp">{profile.status}</span> — {profile.availability.toUpperCase()}
-            </td>
-            <td>{profile.initials}</td>
-            <td>{profile.release.date}</td>
-            <td />
-            <td />
-          </tr>
-          <tr className="heads">
-            <th scope="col">REV.</th>
-            <th scope="col" className="desc">DESCRIPTION / STATUS</th>
-            <th scope="col">DRAWN BY</th>
-            <th scope="col">DRAW DATE</th>
-            <th scope="col">CHECKED</th>
-            <th scope="col">DATE</th>
-          </tr>
-        </tbody>
-      </table>
-
       <div className="tb-nm">
         <span className="k">Engineer:</span>
         <span className="big">{profile.name}</span>
-      </div>
-
-      <div className="tb-lg">
-        <div className="lg-row">
-          <span className="mono-mark" aria-hidden="true">{profile.initials}</span>
-          <span className="lg-sep" aria-hidden="true" />
-          <span className="lg-txt">
-            Mechanical Design
-            <br />
-            CAD Automation
-            <br />
-            Engineering Software
-          </span>
-        </div>
-        <div className="lg-url">{profile.siteUrl.replace("https://", "")}</div>
       </div>
 
       <div className="tb-ct">
@@ -104,11 +48,6 @@ export function TitleBlock({ sheet, index, total }: Props) {
         <span className="k">Scale</span>
         <span className="big">{sheet.scale}</span>
         <span className="k sm">Units: mm</span>
-      </div>
-
-      <div className="tb-pj">
-        <span className="k">Proj.</span>
-        <ProjectionSymbol />
       </div>
 
       <div className="tb-sb">
