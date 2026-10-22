@@ -128,6 +128,7 @@
 .comp .tag { font-size: 0.78em; }
 
 .g02-figs { display: grid; gap: 14px; }
+.g02-figs > .fig:first-child img { object-fit: contain; background: #f2f2f2; }
 .figs3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .figs3 .fig .ph .ph-label { font-size: 0.56em; padding: 0.3em 0.5em; }
 .figs3 .fig figcaption { font-size: 0.62em; gap: 0.5em; }
