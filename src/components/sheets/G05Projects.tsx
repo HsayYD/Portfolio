@@ -41,9 +41,11 @@ export function G05Projects() {
                 </>
               )}
             </dl>
-            <div className="proj-figs">
-              {p.figures.map((f) => <ProjectImagePlaceholder key={f} image={f as ImageKey} ratio={16 / 9} />)}
-            </div>
+            {p.figures.length > 0 && (
+              <div className="proj-figs">
+                {p.figures.map((f) => <ProjectImagePlaceholder key={f} image={f as ImageKey} ratio={16 / 9} />)}
+              </div>
+            )}
           </article>
         ))}
       </div>

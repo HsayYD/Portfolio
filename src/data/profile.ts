@@ -206,7 +206,7 @@ export const academicProjects: AcademicProject[] = [
       "Integrated a Pixhawk flight controller with GPS, ESCs, BLDC motors and swashplate servos; prepared the design reports and BOM.",
     ],
     result: null,
-    figures: ["droneAssembly", "dronePrototype"],
+    figures: ["dronePrototype"],
   },
   {
     id: "landing-gear",
@@ -222,7 +222,7 @@ export const academicProjects: AcademicProject[] = [
       "Checked stresses, mode shapes and frequencies against Abaqus.",
     ],
     result: "Identified the critical members and resonance risks.",
-    figures: ["gearModel", "gearModes"],
+    figures: [],
   },
   {
     id: "solar",
