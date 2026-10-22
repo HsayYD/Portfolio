@@ -22,9 +22,9 @@ export function G05Projects() {
               </div>
             </div>
             {(() => {
-              // A portrait photo fills the space at the bottom of the card.
-              const portrait = p.figures.find((f) => images[f as ImageKey].ratio < 1) as ImageKey | undefined;
-              const below = p.figures.filter((f) => f !== portrait) as ImageKey[];
+                            // Upright or square figures fill the space at the bottom of the card.
+              const fill = (p.figures as ImageKey[]).filter((f) => images[f].ratio <= 1.2);
+              const below = (p.figures as ImageKey[]).filter((f) => images[f].ratio > 1.2);
               const keyWork = (
                 <ol className="notes">{p.keyWork.map((k) => <li key={k}>{k}</li>)}</ol>
               );
@@ -48,9 +48,9 @@ export function G05Projects() {
                       </>
                     )}
                   </dl>
-                  {portrait && (
-                    <div className="proj-portrait">
-                      <ProjectImagePlaceholder image={portrait} />
+                  {fill.length > 0 && (
+                    <div className={`proj-portrait ${fill.length > 1 ? "two" : ""}`}>
+                      {fill.map((f) => <ProjectImagePlaceholder key={f} image={f} />)}
                     </div>
                   )}
                   {below.length > 0 && (
