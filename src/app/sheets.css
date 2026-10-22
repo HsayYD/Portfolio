@@ -185,12 +185,11 @@
 .arch-row .arch-layer { padding: 0.45em 0.6em; }
 .arch-mod.svc { padding: 0.6em 0.9em 0.7em; }
 .arch .arch-tag { font-size: 0.62em; }
-.g04-foot { display: grid; grid-template-columns: 290px 290px minmax(0, 1fr); gap: 18px; align-items: start; }
-.kfig { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
-.kfig > div { padding: 0.55em 0.8em; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
-.kfig > div:nth-child(2n) { border-right: 0; }
-.kfig > div:nth-last-child(-n+2) { border-bottom: 0; }
-.kfig dt { font-size: 1.5em; font-weight: 600; color: var(--accent-ink); line-height: 1.1; }
+.g04-foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.kfig { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ink); }
+.kfig > div { padding: 0.8em 1em; border-right: 1px solid var(--hair); }
+.kfig > div:last-child { border-right: 0; }
+.kfig dt { font-size: 1.9em; font-weight: 600; color: var(--accent-ink); line-height: 1.1; }
 .kfig dd { margin: 0; font: 500 0.66em var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--annot); }
 .arch { margin: 0; }
 .arch-deploy { position: relative; border: 1px dashed var(--ink-2); padding: 1.5em 1em 1em; background: var(--paper); }
@@ -266,7 +265,6 @@
   .figs3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .figs-foot, .figs-foot.two, .figs-foot.six { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .figs-foot > * + * { margin-top: 0 !important; }
-  .g04-foot .fig { max-width: 30em; }
   .arch-row { grid-template-columns: 1fr; }
   .g03-foot .fig { max-width: 30em; }
   .flow { grid-template-columns: minmax(0, 1fr); }

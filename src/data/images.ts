@@ -93,24 +93,6 @@ export const images = {
     ready: true,
   },
 
-  /* G04 — Software Engineering */
-  appDashboard: {
-    fig: "FIG. 04.1",
-    caption: "APPLICATION — WORKSPACE VIEW",
-    src: "/images/software-project/workspace.png",
-    alt: "Screenshot of the SaaS platform workspace view",
-    ratio: 16 / 10,
-    ready: false,
-  },
-  appWorkflow: {
-    fig: "FIG. 04.2",
-    caption: "APPLICATION — APPROVAL WORKFLOW",
-    src: "/images/software-project/approval-workflow.png",
-    alt: "Screenshot of the approval workflow configuration",
-    ratio: 16 / 10,
-    ready: false,
-  },
-
   /* G05 — Academic projects */
   droneAssembly: {
     fig: "FIG. 05.1",

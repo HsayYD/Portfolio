@@ -1,5 +1,4 @@
 import { sheets } from "@/data/sheets";
-import { ProjectImagePlaceholder } from "../ProjectImagePlaceholder";
 import { Sec, SheetHeader } from "../SheetHeader";
 
 const engineering = [
@@ -56,7 +55,6 @@ const figures = [
   { v: "50+", l: "service modules" },
   { v: "18", l: "AI features" },
   { v: "15+", l: "whiteboard templates" },
-  { v: "275", l: "migrations squashed" },
 ];
 
 function Architecture() {
@@ -126,14 +124,10 @@ export function G04Software() {
           <ol className="notes g04-notes">
             {devops.map((x, i) => <li key={i}>{x}</li>)}
           </ol>
-          <Sec n="4.5">Stack</Sec>
-          <ul className="tags">{stack.map((t) => <li key={t} className="tag">{t}</li>)}</ul>
         </section>
       </div>
 
       <div className="pg-foot g04-foot">
-        <ProjectImagePlaceholder image="appDashboard" />
-        <ProjectImagePlaceholder image="appWorkflow" />
         <dl className="kfig" aria-label="Key figures">
           {figures.map((f) => (
             <div key={f.l}>
@@ -142,6 +136,10 @@ export function G04Software() {
             </div>
           ))}
         </dl>
+        <section>
+          <Sec n="4.5">Stack</Sec>
+          <ul className="tags">{stack.map((t) => <li key={t} className="tag">{t}</li>)}</ul>
+        </section>
       </div>
     </>
   );
