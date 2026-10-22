@@ -74,37 +74,23 @@ export const images = {
   },
 
   /* G03 — CAD Automation */
-  seScreenshot: {
+  claudeManhole: {
     fig: "FIG. 03.1",
-    caption: "SOLID EDGE SESSION",
-    src: "/images/cad-automation/solid-edge-session.png",
-    alt: "Solid Edge screenshot during an automated modelling session",
-    ratio: 16 / 10,
-    ready: false,
+    caption: "MANHOLE BUILT BY CLAUDE",
+    src: "/images/cad-automation/claude-manhole.jpg",
+    full: "/images/cad-automation/claude-manhole-full.png",
+    alt: "Manhole cover assembly modelled in Solid Edge by Claude through the MCP integration: domed cover, clamping arms, hinge and wing-nut handle",
+    ratio: 1094 / 602,
+    ready: true,
   },
-  seModel: {
+  manholeOverlay: {
     fig: "FIG. 03.2",
-    caption: "GENERATED CAD MODEL",
-    src: "/images/cad-automation/generated-model.png",
-    alt: "CAD model generated from a natural-language request",
-    ratio: 4 / 3,
-    ready: false,
-  },
-  seWorkflow: {
-    fig: "FIG. 03.3",
-    caption: "AUTOMATION WORKFLOW",
-    src: "/images/cad-automation/workflow.png",
-    alt: "Automation workflow between Claude and Solid Edge",
-    ratio: 4 / 3,
-    ready: false,
-  },
-  seDetail: {
-    fig: "FIG. 03.4",
-    caption: "MODEL DETAIL",
-    src: "/images/cad-automation/model-detail.png",
-    alt: "Detail of a generated CAD model",
-    ratio: 4 / 3,
-    ready: false,
+    caption: "OVERLAY ON SUPPLIER MODEL",
+    src: "/images/cad-automation/manhole-overlay.jpg",
+    full: "/images/cad-automation/manhole-overlay-full.png",
+    alt: "Assembly overlaying the Claude-built manhole (blue) on the supplier's manhole model (light grey); the two coincide, with both colours showing through where surfaces overlap",
+    ratio: 1245 / 698,
+    ready: true,
   },
 
   /* G04 — Software Engineering */

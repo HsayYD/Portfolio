@@ -163,6 +163,8 @@
 .g03-cols { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; align-items: start; }
 .notes.two { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.6em; font-size: 0.92em; }
 
+.g03-foot { display: grid; grid-template-columns: 330px 330px minmax(0, 1fr); gap: 20px; align-items: start; }
+.g03-val .prose { font-size: 0.86em; margin: 0 0 0.5em; }
 /* figure strips in the foot */
 .figs-foot { display: grid; grid-template-columns: repeat(4, 196px); gap: 16px; align-content: start; border-top: 0; }
 .figs-foot.two { grid-template-columns: repeat(2, 290px); }
@@ -246,6 +248,7 @@
   .figs3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .figs-foot, .figs-foot.two, .figs-foot.six { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .figs-foot > * + * { margin-top: 0 !important; }
+  .g03-foot .fig { max-width: 30em; }
   .flow { grid-template-columns: minmax(0, 1fr); }
   .flow li + li { border-left: 1px solid var(--ink); border-top: 0; }
   .flow li + li::before { left: 1.2em; top: -6px; border: 5px solid transparent; border-top: 6px solid var(--ink); border-bottom: 0; }

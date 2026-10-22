@@ -70,11 +70,17 @@ export function G03CadAutomation() {
         </div>
       </div>
 
-      <div className="pg-foot figs-foot">
-        <ProjectImagePlaceholder image="seScreenshot" ratio={4 / 3} />
-        <ProjectImagePlaceholder image="seModel" />
-        <ProjectImagePlaceholder image="seWorkflow" />
-        <ProjectImagePlaceholder image="seDetail" />
+      <div className="pg-foot g03-foot">
+        <ProjectImagePlaceholder image="claudeManhole" />
+        <ProjectImagePlaceholder image="manholeOverlay" />
+        <section className="g03-val">
+          <Sec n="3.3">Validation</Sec>
+          <p className="prose">
+            To prove its Solid Edge capability, Claude modelled a manhole to a supplier&apos;s specification. Placed in
+            one assembly with the supplier&apos;s own model, the two coincide: where surfaces overlap, both colours
+            show through, confirming the Claude-built part (blue) matches the supplier geometry.
+          </p>
+        </section>
       </div>
     </>
   );
