@@ -54,7 +54,7 @@ export function G06Skills() {
                   <td>
                     {e.qualification}
                     {e.id === "liverpool" && (
-                      <div className="label edu-note">Coursework only — degree not completed</div>
+                      <div className="label edu-note">Studies interrupted</div>
                     )}
                   </td>
                   <td className="mono" style={{ whiteSpace: "nowrap" }}>{e.dates}</td>

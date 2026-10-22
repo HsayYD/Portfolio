@@ -119,7 +119,7 @@ export const education: Education[] = [
     institution: "University of Liverpool, UK",
     qualification: "MSc Aerospace Engineering coursework",
     dates: "2024 – 2025",
-    status: "Coursework — not completed",
+    status: "Studies interrupted",
   },
   {
     id: "tphs",
