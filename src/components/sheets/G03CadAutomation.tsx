@@ -16,74 +16,65 @@ export function G03CadAutomation() {
     <>
       <SheetHeader sheet={sheets[3]} />
 
-      <div className="label">GPI India · Claude MCP × Solid Edge COM automation</div>
-      <p className="lede" style={{ marginBottom: "1.4em" }}>
-        An MCP integration for Claude with Solid Edge COM automation — engineers describe requirements in natural
-        language and get tailored 3D CAD models.
-      </p>
+      <div className="pg-main g03">
+        <div className="g03-top">
+          <div className="label">GPI India · Claude MCP × Solid Edge COM automation</div>
+          <p className="lede">
+            An MCP integration for Claude with Solid Edge COM automation: engineers describe requirements in
+            natural language and get tailored 3D CAD models.
+          </p>
+        </div>
 
-      <Sec n="3.1">System diagram</Sec>
-      <figure className="sysd">
-        <ol className="sys-flow">
-          {nodes.map((n) => (
-            <li key={n.ref}>
-              <div className="sys-node">
-                <span className="balloon">{n.ref}</span>
-                <strong>{n.t}</strong>
-                <span>{n.d}</span>
-              </div>
-              <div className="sys-ill">{n.ill}</div>
-            </li>
-          ))}
-        </ol>
-        <figcaption className="sys-legend">
-          <span><i className="sw solid" /> Documented capability</span>
-          <span><i className="sw dashed" /> Illustrative detail</span>
-          <span className="label">Fig. 03.0 — Natural-language to CAD data flow</span>
-        </figcaption>
-      </figure>
+        <figure className="sysd">
+          <ol className="sys-flow">
+            {nodes.map((n) => (
+              <li key={n.ref}>
+                <div className="sys-node">
+                  <span className="balloon">{n.ref}</span>
+                  <strong>{n.t}</strong>
+                  <span>{n.d}</span>
+                </div>
+                <div className="sys-ill">{n.ill}</div>
+              </li>
+            ))}
+          </ol>
+          <figcaption className="sys-legend">
+            <span><i className="sw solid" /> Documented capability</span>
+            <span><i className="sw dashed" /> Illustrative detail</span>
+            <span className="label">Fig. 03.0 — Natural-language to CAD data flow</span>
+          </figcaption>
+        </figure>
 
-      <div className="split" style={{ marginTop: "2em" }}>
-        <div className="stack">
+        <div className="g03-cols">
           <section>
-            <Sec n="3.2">Concept</Sec>
-            <ol className="notes">
-              <li><b>Natural-language requirements</b> — the engineer states what the part needs to be instead of building it feature by feature.</li>
-              <li><b>Automation bridge using MCP</b> — the Model Context Protocol connects Claude to the CAD tooling.</li>
-              <li><b>Solid Edge COM API</b> — Solid Edge is driven programmatically through its COM automation interface.</li>
-              <li><b>CAD model generation</b> — the result is a tailored 3D model inside Solid Edge.</li>
+            <Sec n="3.1">Concept</Sec>
+            <ol className="notes two">
+              <li><b>Natural-language requirements</b>: the engineer states what the part needs to be instead of building it feature by feature.</li>
+              <li><b>Automation bridge using MCP</b>: the Model Context Protocol connects Claude to the CAD tooling.</li>
+              <li><b>Solid Edge COM API</b>: Solid Edge is driven programmatically through its COM automation interface.</li>
+              <li><b>CAD model generation</b>: the result is a tailored 3D model inside Solid Edge.</li>
             </ol>
           </section>
-
           <TechnicalCallout title="Why it matters" tone="accent" ref_="i">
             <p style={{ margin: 0 }}>
-              Repetitive modelling is a large share of design time. Letting engineers describe intent in plain
-              language reduces that repetition and makes CAD automation usable by engineers who don&apos;t write
-              automation code themselves.
+              Repetitive modelling is a large share of design time. Describing intent in plain language reduces
+              that repetition and makes CAD automation usable by engineers who don&apos;t write automation code.
             </p>
-          </TechnicalCallout>
-
-          <section>
-            <Sec n="3.3">Tools</Sec>
-            <ul className="tags">
-              {["Claude", "Model Context Protocol (MCP)", "Solid Edge", "Solid Edge COM API"].map((t) => (
+            <ul className="tags" style={{ marginTop: "0.7em" }}>
+              {["Claude", "MCP", "Solid Edge", "Solid Edge COM API"].map((t) => (
                 <li key={t} className="tag">{t}</li>
               ))}
             </ul>
-            <p className="label" style={{ marginTop: "0.7em" }}>
-              Status: developed at GPI India · not a commercially released product.
-            </p>
-          </section>
+            <p className="label" style={{ margin: "0.6em 0 0" }}>Developed at GPI India · not a commercially released product</p>
+          </TechnicalCallout>
         </div>
+      </div>
 
-        <div className="stack">
-          <ProjectImagePlaceholder image="seScreenshot" />
-          <div className="g3 figs3">
-            <ProjectImagePlaceholder image="seModel" />
-            <ProjectImagePlaceholder image="seWorkflow" />
-            <ProjectImagePlaceholder image="seDetail" />
-          </div>
-        </div>
+      <div className="pg-foot figs-foot">
+        <ProjectImagePlaceholder image="seScreenshot" ratio={4 / 3} />
+        <ProjectImagePlaceholder image="seModel" />
+        <ProjectImagePlaceholder image="seWorkflow" />
+        <ProjectImagePlaceholder image="seDetail" />
       </div>
     </>
   );

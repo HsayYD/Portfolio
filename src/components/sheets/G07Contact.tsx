@@ -10,7 +10,7 @@ export function G07Contact() {
     <>
       <SheetHeader sheet={sheets[7]} />
 
-      <div className="contact">
+      <div className="pg-main contact">
         <div className="contact-main">
           <div className="status-plate">
             <span className="label">Status</span>
@@ -20,7 +20,7 @@ export function G07Contact() {
 
           <h3 className="contact-h">Let&apos;s talk about your next mechanical design or automation project.</h3>
           <p className="prose">
-            I&apos;m looking for roles in mechanical design, CAD automation and engineering software — teams where
+            I&apos;m looking for roles in mechanical design, CAD automation and engineering software, in teams where
             solid drawings and well-built tools both matter. Recruiters and engineering managers are welcome to get
             in touch directly.
           </p>
@@ -59,17 +59,18 @@ export function G07Contact() {
               </tr>
             </tbody>
           </table>
-
-          <Sec n="7.2">Open to discussing</Sec>
-          <ol className="notes">
-            <li>Mechanical design — 3D modelling, manufacturing drawings, sheet metal and assembly documentation.</li>
-            <li>CAD automation and customisation — Solid Edge COM API, design tools, AI-assisted modelling.</li>
-            <li>Engineering software — tools that sit between CAD, ERP and the people using them.</li>
-          </ol>
         </div>
       </div>
 
-      <p className="end-note label">— End of drawing package · {sheets.length} sheets —</p>
+      <div className="pg-foot">
+        <Sec n="7.2">Open to discussing</Sec>
+        <ol className="notes">
+          <li>Mechanical design: 3D modelling, manufacturing drawings, sheet metal and assembly documentation.</li>
+          <li>CAD automation and customisation: Solid Edge COM API, design tools, AI-assisted modelling.</li>
+          <li>Engineering software: tools that sit between CAD, ERP and the people using them.</li>
+        </ol>
+        <p className="end-note label">— End of drawing package · {sheets.length} sheets —</p>
+      </div>
     </>
   );
 }

@@ -7,6 +7,7 @@ export function G06Skills() {
     <>
       <SheetHeader sheet={sheets[6]} />
 
+      <div className="pg-main g06">
       <section>
         <Sec n="6.1">Technical skills schedule</Sec>
         <table className="tbl">
@@ -36,8 +37,7 @@ export function G06Skills() {
         <p className="label" style={{ marginTop: "0.6em" }}>Tools listed as on resume · no self-rated proficiency levels</p>
       </section>
 
-      <div className="g2" style={{ marginTop: "2em" }}>
-        <section>
+        <section className="g06-edu">
           <Sec n="6.2">Education</Sec>
           <table className="tbl">
             <thead>
@@ -63,7 +63,9 @@ export function G06Skills() {
             </tbody>
           </table>
         </section>
+      </div>
 
+      <div className="pg-foot">
         <section>
           <Sec n="6.3">Languages &amp; interests</Sec>
           <table className="tbl">

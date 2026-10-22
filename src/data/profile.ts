@@ -33,6 +33,8 @@ export const profile = {
   languages: ["English", "Hindi", "Telugu", "Spanish"],
 
   siteUrl: "https://yashashwin-portfolio.vercel.app",
+  /** Shown in the title block's revision/status strip. */
+  release: { rev: "0", date: "22.10.2026" },
 };
 
 /* ── Experience ──────────────────────────────────────────────────────── */

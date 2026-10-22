@@ -53,78 +53,75 @@ function Timeline() {
           ))}
         </span>
       </div>
-      <figcaption className="label">Fig. 01.1 — Employment timeline, 2026 · month grid</figcaption>
+      <figcaption className="tl-cap">
+        <span className="label">Fig. 01.1 — Employment timeline, 2026</span>
+        <span><i className="sw mech" /> Mechanical design &amp; CAD automation</span>
+        <span><i className="sw soft" /> Software engineering</span>
+      </figcaption>
     </figure>
   );
 }
 
 export function G01Experience() {
+  const isMech = (r: (typeof experience)[number]) => r.track === "MECHANICAL DESIGN";
   return (
     <>
       <SheetHeader sheet={sheets[1]} />
 
-      <Timeline />
+      <div className="pg-main g01">
+        <Timeline />
 
-      <div className="legend-row">
-        <span><i className="sw mech" /> Mechanical design &amp; CAD automation</span>
-        <span><i className="sw soft" /> Software engineering</span>
+        <div className="roles">
+          {experience.map((r, idx) => (
+            <article key={r.id} className={`role ${isMech(r) ? "mech" : "soft"}`}>
+              <div className="role-head">
+                <span className="balloon">{idx + 1}</span>
+                <div className="role-ttl">
+                  <span className="label">{r.track}</span>
+                  <h3>
+                    {r.employer} <span className="muted">—</span> {r.title}
+                  </h3>
+                </div>
+                <div className="role-dates mono">
+                  {r.start} – {r.end}
+                </div>
+              </div>
+              <div className="role-body">
+                <p className="role-sum">{r.summary}</p>
+                <ol className="notes">
+                  {r.responsibilities.map((x) => <li key={x}>{x}</li>)}
+                </ol>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
 
-      {experience.map((r, idx) => (
-        <article key={r.id} className={`role ${r.track === "MECHANICAL DESIGN" ? "mech" : "soft"}`}>
-          <div className="role-head">
-            <span className="balloon">{idx + 1}</span>
-            <div className="role-ttl">
-              <span className="label">{r.track}</span>
-              <h3>
-                {r.employer} <span className="muted">—</span> {r.title}
-              </h3>
-            </div>
-            <div className="role-dates mono">
-              {r.start} – {r.end}
-            </div>
-          </div>
-
-          <div className="role-body">
-            <div>
-              <Sec n={`1.${idx + 1}.1`}>Summary</Sec>
-              <p className="prose">{r.summary}</p>
-
-              <Sec n={`1.${idx + 1}.2`}>Responsibilities &amp; work</Sec>
-              <ol className="notes">
-                {r.responsibilities.map((x) => <li key={x}>{x}</li>)}
-              </ol>
-            </div>
-
-            <div className="stack-sm">
-              <div>
-                <span className="label">{r.track === "SOFTWARE ENGINEERING" ? "Scope" : "Tools & standards"}</span>
-                <ul className="tags" style={{ marginTop: "0.45em" }}>
-                  {r.tools.map((t) => (
-                    <li key={t} className={`tag ${t.startsWith("EN ISO") ? "std" : ""}`}>{t}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {r.outcomes.map((o) => (
-                <TechnicalCallout key={o.label} title="Documented outcome" tone="mark">
-                  <div className="out-v mono">{o.value}</div>
-                  <div className="label">{o.label}</div>
-                </TechnicalCallout>
+      <div className="pg-foot g01-foot">
+        {experience.map((r, idx) => (
+          <div key={r.id} className="g01-tools">
+            <Sec n={`1.${idx + 1}`}>{r.employer} — {isMech(r) ? "tools & standards" : "scope"}</Sec>
+            <ul className="tags">
+              {r.tools.map((t) => (
+                <li key={t} className={`tag ${t.startsWith("EN ISO") ? "std" : ""}`}>{t}</li>
               ))}
-
-              <div className="xrefs">
-                <span className="label">Detail sheets</span>
-                {r.sheetLinks.map((l) => (
-                  <a key={l.id} className="xref" href={`#${l.id}`}>
-                    {l.label} <ArrowRight width={12} height={12} aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
+            </ul>
+            <div className="xrefs">
+              {r.sheetLinks.map((l) => (
+                <a key={l.id} className="xref" href={`#${l.id}`}>
+                  {l.label} <ArrowRight width={12} height={12} aria-hidden="true" />
+                </a>
+              ))}
             </div>
           </div>
-        </article>
-      ))}
+        ))}
+        {experience[0].outcomes.map((o) => (
+          <TechnicalCallout key={o.label} title="Documented outcome" tone="mark" className="g01-out">
+            <div className="out-v mono">{o.value}</div>
+            <div className="label">{o.label}</div>
+          </TechnicalCallout>
+        ))}
+      </div>
     </>
   );
 }

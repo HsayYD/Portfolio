@@ -1,71 +1,139 @@
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { Download } from "lucide-react";
 import { profile } from "@/data/profile";
 import type { SheetMeta } from "@/data/sheets";
-import { ResumeDownload } from "./ResumeDownload";
 
 type Props = { sheet: SheetMeta; index: number; total: number };
 
+/** Projection symbol (truncated cone: end view + side view). */
+function ProjectionSymbol() {
+  return (
+    <svg viewBox="0 0 64 28" width="64" height="28" aria-hidden="true" className="tb-proj">
+      <circle cx="14" cy="14" r="10" />
+      <circle cx="14" cy="14" r="5" />
+      <path d="M2 14H26M14 2V26" className="cl" />
+      <path d="M34 6L60 10V18L34 22Z" />
+      <path d="M30 14H63" className="cl" />
+    </svg>
+  );
+}
+
 /**
- * Compact manufacturing-drawing title block, sitting in the bottom-right
- * corner of the sheet. Updates with the active sheet.
+ * Manufacturing-drawing title block in the bottom-right corner of the sheet,
+ * laid out like a production title block:
  *
- *  ┌──────────────┬────────────┬─────────────────┬──────────┐
- *  │ YD  NAME     │ DISCIPLINE │ CONTACT         │ SHEET    │
- *  │ positioning  ├────────────┤ email / phone / ├──────────┤
- *  │              │ STATUS     │ LinkedIn        │ RESUME ↓ │
- *  └──────────────┴────────────┴─────────────────┴──────────┘
+ *  ┌ REV │ DESCRIPTION / STATUS                │ DRAWN │ DATE │ CHK │ DATE ┐
+ *  ├──────────────────────────────────────────────────┬───────────────────┤
+ *  │ Engineer:  NAME                                  │  logo / identity  │
+ *  ├──────────────┬────────────┬──────────────────────┤                   │
+ *  │ contact      │ Scale      │ Proj.                │                   │
+ *  │              ├────────────┴──────────────────────┴───────────────────┤
+ *  │              │ Subject:  SHEET TITLE                                 │
+ *  │              ├────────────┬──────────┬─────────────────────┬─────────┤
+ *  │ resume ↓     │ note       │ Paper    │ Drawing no.  Sheet  │ Rev     │
+ *  └──────────────┴────────────┴──────────┴─────────────────────┴─────────┘
  */
 export function TitleBlock({ sheet, index, total }: Props) {
   const { contact } = profile;
   return (
     <div className="titleblock" aria-label="Title block">
-      <div className="tb-id">
-        <div className="mono-mark" aria-hidden="true">{profile.initials}</div>
-        <div>
-          <div className="nm">{profile.name}</div>
-          <div className="ds">{profile.positioning.replaceAll(" | ", " · ")}</div>
-        </div>
+      {/* revision / status strip */}
+      <table className="tb-strip">
+        <tbody>
+          <tr className="data">
+            <td>{profile.release.rev}</td>
+            <td className="desc">
+              <span className="status-lamp">{profile.status}</span> — {profile.availability.toUpperCase()}
+            </td>
+            <td>{profile.initials}</td>
+            <td>{profile.release.date}</td>
+            <td />
+            <td />
+          </tr>
+          <tr className="heads">
+            <th scope="col">REV.</th>
+            <th scope="col" className="desc">DESCRIPTION / STATUS</th>
+            <th scope="col">DRAWN BY</th>
+            <th scope="col">DRAW DATE</th>
+            <th scope="col">CHECKED</th>
+            <th scope="col">DATE</th>
+          </tr>
+        </tbody>
+      </table>
+
+      <div className="tb-nm">
+        <span className="k">Engineer:</span>
+        <span className="big">{profile.name}</span>
       </div>
 
-      <div className="tb-cell tb-disc">
-        <span className="label">Discipline</span>
-        <div className="v">{profile.discipline}</div>
+      <div className="tb-lg">
+        <div className="lg-row">
+          <span className="mono-mark" aria-hidden="true">{profile.initials}</span>
+          <span className="lg-sep" aria-hidden="true" />
+          <span className="lg-txt">
+            Mechanical Design
+            <br />
+            CAD Automation
+            <br />
+            Engineering Software
+          </span>
+        </div>
+        <div className="lg-url">{profile.siteUrl.replace("https://", "")}</div>
       </div>
 
-      <div className="tb-cell tb-stat">
-        <span className="label">Status</span>
-        <div className="v tb-status status-lamp">{profile.status}</div>
-        <div className="v sub">{profile.availability}</div>
+      <div className="tb-ct">
+        <span className="k">Contact</span>
+        <dl>
+          <dt>E-mail</dt>
+          <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+          <dt>Phone</dt>
+          <dd><a href={contact.phoneHref}>{contact.phone}</a></dd>
+          <dt>LinkedIn</dt>
+          <dd>
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+              /in/yashashwin-doranala<span className="sr-only"> (opens in new tab)</span>
+            </a>
+          </dd>
+        </dl>
+        <a className="tb-dl" href={profile.resumePath} download="Yashashwin-Doranala-Resume.pdf">
+          <Download aria-hidden="true" /> Download resume
+          <span className="sr-only"> (PDF)</span>
+        </a>
       </div>
 
-      <div className="tb-cell tb-contact">
-        <span className="label">Contact</span>
-        <div className="row">
-          <Mail aria-hidden="true" />
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        </div>
-        <div className="row">
-          <Phone aria-hidden="true" />
-          <a href={contact.phoneHref}>{contact.phone}</a>
-        </div>
-        <div className="row">
-          <ArrowUpRight aria-hidden="true" />
-          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
-            LinkedIn profile<span className="sr-only"> (opens in new tab)</span>
-          </a>
-        </div>
+      <div className="tb-sc">
+        <span className="k">Scale</span>
+        <span className="big">{sheet.scale}</span>
+        <span className="k sm">Units: mm</span>
       </div>
 
-      <div className="tb-cell tb-sheet">
-        <span className="label">Sheet</span>
-        <div className="v tb-big" aria-live="polite">
-          {sheet.code} <span className="muted">·</span> {index + 1}/{total}
-        </div>
-        <div className="v sub">SCALE {sheet.scale}</div>
+      <div className="tb-pj">
+        <span className="k">Proj.</span>
+        <ProjectionSymbol />
       </div>
 
-      <div className="tb-act">
-        <ResumeDownload label="Resume" />
+      <div className="tb-sb">
+        <span className="k">Subject:</span>
+        <span className="big" aria-live="polite">{sheet.title}</span>
+      </div>
+
+      <div className="tb-nt">
+        This drawing package is the work of {profile.name}. All details per current resume.
+      </div>
+
+      <div className="tb-ps">
+        <span className="k">Paper size</span>
+        <span className="huge">A<sub>1</sub></span>
+      </div>
+
+      <div className="tb-dn">
+        <span className="k">Dwg. no.</span>
+        <span className="sht">Sheet {index + 1} of {total}</span>
+        <span className="huge">{sheet.code}</span>
+      </div>
+
+      <div className="tb-rv">
+        <span className="k">Rev.</span>
+        <span className="huge">{profile.release.rev}</span>
       </div>
     </div>
   );

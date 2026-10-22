@@ -1,4 +1,4 @@
-import { forwardRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import type { SheetMeta } from "@/data/sheets";
 import { DrawingBorder } from "./DrawingBorder";
@@ -11,55 +11,47 @@ type Props = {
 };
 
 /**
- * The paper sheet: zone border, double-line frame, scrolling content area
- * and a bottom band holding the general notes and the bottom-right title
- * block. Every sheet's content is rendered (so it
- * is indexable and printable); only the active one is visible.
+ * The paper sheet: a fixed-size landscape page (scaled to fit the window by
+ * the workspace) with zone border, double-line frame, the active sheet's
+ * content and the title block in the bottom-right corner. Nothing on the
+ * sheet scrolls. Every sheet's content is rendered (indexable, printable);
+ * only the active one is visible.
+ *
+ * On phones the page is not scaled: content stacks and the page scrolls,
+ * and the title block becomes a collapsible panel at the top.
  */
-export const DrawingSheet = forwardRef<HTMLDivElement, Props>(function DrawingSheet(
-  { sheets, active, panels },
-  contentRef,
-) {
+export function DrawingSheet({ sheets, active, panels }: Props) {
   const sheet = sheets[active];
   return (
-    <div className="sheet">
-      <DrawingBorder />
-      <div className="frame">
-        <main id="content" ref={contentRef} className="content" tabIndex={-1}>
-          {/* Title block collapses into this panel on small screens */}
-          <details className="tb-mobile">
-            <summary>
-              <span className="label" style={{ fontSize: 10 }}>Title block</span>
-              <b>{sheet.code}</b>
-              <span className="muted">· sheet {active + 1}/{sheets.length}</span>
-              <ChevronDown className="chev" width={16} height={16} aria-hidden="true" />
-            </summary>
-            <TitleBlock sheet={sheet} index={active} total={sheets.length} />
-          </details>
+    <div className="sheet-sizer">
+      <div className="sheet">
+        <DrawingBorder />
+        <div className="frame">
+          <main id="content" className="content" tabIndex={-1}>
+            <details className="tb-mobile">
+              <summary>
+                <span className="label" style={{ fontSize: 10 }}>Title block</span>
+                <b>{sheet.code}</b>
+                <span className="muted">· sheet {active + 1} of {sheets.length}</span>
+                <ChevronDown className="chev" width={16} height={16} aria-hidden="true" />
+              </summary>
+              <TitleBlock sheet={sheet} index={active} total={sheets.length} />
+            </details>
 
-          {sheets.map((s, i) => (
-            <section
-              key={s.id}
-              id={`sheet-${s.id}`}
-              role="tabpanel"
-              aria-labelledby={`tab-${s.id}`}
-              hidden={i !== active}
-              className="sheet-panel enter"
-            >
-              {panels[s.id]}
-            </section>
-          ))}
-        </main>
+            {sheets.map((s, i) => (
+              <section
+                key={s.id}
+                id={`sheet-${s.id}`}
+                role="tabpanel"
+                aria-labelledby={`tab-${s.id}`}
+                hidden={i !== active}
+                className="sheet-panel enter"
+              >
+                {panels[s.id]}
+              </section>
+            ))}
+          </main>
 
-        <div className="sheet-band">
-          <div className="gen-notes" aria-hidden="true">
-            <span className="label">General notes</span>
-            <ol>
-              <li>Use the sheet tabs below, or the ← → keys, to move between sheets.</li>
-              <li>All details per current resume — download from the title block.</li>
-              <li>Do not scale drawing.</li>
-            </ol>
-          </div>
           <aside className="titleblock-wrap">
             <TitleBlock sheet={sheet} index={active} total={sheets.length} />
           </aside>
@@ -67,4 +59,4 @@ export const DrawingSheet = forwardRef<HTMLDivElement, Props>(function DrawingSh
       </div>
     </div>
   );
-});
+}

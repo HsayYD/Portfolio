@@ -7,7 +7,11 @@ import { sheets } from "@/data/sheets";
 import { DrawingSheet } from "./DrawingSheet";
 import { SheetTabs } from "./SheetTabs";
 
-const ZOOMS = [0.85, 1, 1.15, 1.3];
+/** Zoom steps relative to "fit the whole sheet in the window". */
+const ZOOMS = [1, 1.25, 1.5, 2];
+/** Fixed sheet size in CSS px — every sheet is laid out on this page. */
+export const PAGE_W = 1680;
+export const PAGE_H = 1000;
 
 const subscribeHash = (cb: () => void) => {
   window.addEventListener("hashchange", cb);
@@ -34,8 +38,25 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
   const active = useSyncExternalStore(subscribeHash, indexFromHash, () => 0);
   const lightWs = useSyncExternalStore(subscribeWs, isLightWs, () => false);
   const [zoom, setZoom] = useState(1);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState(1);
+  const wsRef = useRef<HTMLDivElement>(null);
   const first = useRef(true);
+
+  /* — fit the fixed-size sheet to the available workspace — */
+  useEffect(() => {
+    const el = wsRef.current;
+    if (!el) return;
+    const measure = () => {
+      const cs = getComputedStyle(el);
+      const w = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const h = el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      if (w > 0 && h > 0) setFit(Math.min(w / PAGE_W, h / PAGE_H));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   /* — active sheet lives in the URL hash (linkable, back button works) — */
   const select = useCallback((i: number) => {
@@ -49,8 +70,8 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
     const s = sheets[active];
     document.title = `${s.code} ${s.title} — ${profile.name}`;
     if (first.current) { first.current = false; return; }
-    const el = contentRef.current;
-    if (el) el.scrollTop = 0;
+    const ws = wsRef.current;
+    if (ws) ws.scrollTo({ top: 0, left: 0 });
     // Small screens scroll the page itself: return to the top of the sheet.
     if (window.matchMedia("(max-width: 900px)").matches) {
       window.scrollTo({ top: 0 });
@@ -71,10 +92,6 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
     return () => window.removeEventListener("keydown", onKey);
   }, [active, select]);
 
-  /* — zoom — */
-  useEffect(() => {
-    document.documentElement.style.setProperty("--zoom", String(zoom));
-  }, [zoom]);
   const zi = ZOOMS.indexOf(zoom);
 
   const toggleWorkspace = () => {
@@ -108,10 +125,10 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
             type="button"
             className="tool-btn zoom-readout"
             onClick={() => setZoom(1)}
-            title="Reset zoom to 100%"
-            aria-label={`Zoom ${Math.round(zoom * 100)} percent, reset`}
+            title="Fit sheet to window"
+            aria-label={zoom === 1 ? "Zoom: fit to window" : `Zoom ${Math.round(zoom * 100)} percent, fit to window`}
           >
-            {Math.round(zoom * 100)}%
+            {zoom === 1 ? "FIT" : `${Math.round(zoom * 100)}%`}
           </button>
           <button type="button" className="tool-btn" onClick={() => setZoom(ZOOMS[zi + 1])} disabled={zi >= ZOOMS.length - 1} aria-label="Zoom in">
             <ZoomIn width={15} height={15} aria-hidden="true" />
@@ -146,8 +163,12 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
         </div>
       </header>
 
-      <div className="workspace">
-        <DrawingSheet ref={contentRef} sheets={sheets} active={active} panels={panels} />
+      <div
+        className={`workspace ${zoom > 1 ? "zoomed" : ""}`}
+        ref={wsRef}
+        style={{ ["--s" as string]: String(fit * zoom) }}
+      >
+        <DrawingSheet sheets={sheets} active={active} panels={panels} />
       </div>
 
       <SheetTabs sheets={sheets} active={active} onSelect={select} />
