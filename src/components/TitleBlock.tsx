@@ -100,11 +100,13 @@ export function TitleBlock({ sheet, index, total }: Props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{profile.revision}</td>
-              <td>{profile.issued}</td>
-              <td>{profile.revisionNote}</td>
-            </tr>
+            {[...profile.revisions].reverse().map((r) => (
+              <tr key={r.rev}>
+                <td>{r.rev}</td>
+                <td>{r.date}</td>
+                <td>{r.note}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
