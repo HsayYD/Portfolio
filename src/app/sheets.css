@@ -208,7 +208,7 @@
 .g04 .prose { margin: 0 0 0.5em; font-size: 0.94em; }
 
 /* ── G05 ─────────────────────────────────────────────────────────────── */
-.g05 { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr) minmax(0, 1fr); gap: 18px; align-items: stretch; }
+.g05 { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); height: 100%; gap: 18px; align-items: stretch; }
 .proj { display: flex; flex-direction: column; }
 .proj-figs { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 8px 4px; border-top: 1px solid var(--hair); }
 .proj-figs figcaption { font-size: 0.6em; }
@@ -225,8 +225,10 @@
 .spec dt:first-of-type, .spec dt:first-of-type + dd { border-top: 0; }
 .spec .notes > li { margin-bottom: 0.3em; padding-left: 1.8em; }
 .spec .res { color: var(--mark); background: var(--mark-wash); }
-.kw-split { display: grid; grid-template-columns: minmax(0, 1fr) 168px; gap: 12px; align-items: start; }
-.kw-split .fig figcaption { font-size: 0.68em; }
+.proj-portrait { flex: 1; min-height: 150px; display: flex; justify-content: center; padding: 10px 10px 8px; border-top: 1px solid var(--hair); }
+.proj-portrait .fig { height: 100%; display: flex; flex-direction: column; align-items: center; min-height: 0; }
+.proj-portrait .frame-img { flex: 1; min-height: 0; height: 100%; width: auto !important; }
+.proj-portrait figcaption { font-size: 0.66em; white-space: nowrap; }
 .spec dd.res { font-weight: 600; }
 
 /* ── G06 ─────────────────────────────────────────────────────────────── */
@@ -280,7 +282,9 @@
   .sheet-index { grid-template-columns: minmax(0, 1fr); }
   .proj + .proj { margin-top: 1.2em; }
   .proj-figs { margin-top: 0; }
-  .kw-split { grid-template-columns: minmax(0, 1fr) 40%; }
+  .proj-portrait { min-height: 0; }
+  .proj-portrait .fig { height: auto; width: 60%; }
+  .proj-portrait .frame-img { height: auto; width: 100% !important; }
   .spec { grid-template-columns: 6.5em minmax(0, 1fr); font-size: 0.92em; }
   .contact-h { font-size: 1.6em; }
 }

@@ -22,7 +22,7 @@ export function G05Projects() {
               </div>
             </div>
             {(() => {
-              // A portrait photo sits beside the key work instead of below it.
+              // A portrait photo fills the space at the bottom of the card.
               const portrait = p.figures.find((f) => images[f as ImageKey].ratio < 1) as ImageKey | undefined;
               const below = p.figures.filter((f) => f !== portrait) as ImageKey[];
               const keyWork = (
@@ -40,16 +40,7 @@ export function G05Projects() {
                       <ul className="tags">{p.tools.map((t) => <li key={t} className="tag">{t}</li>)}</ul>
                     </dd>
                     <dt>Key work</dt>
-                    <dd>
-                      {portrait ? (
-                        <div className="kw-split">
-                          {keyWork}
-                          <ProjectImagePlaceholder image={portrait} />
-                        </div>
-                      ) : (
-                        keyWork
-                      )}
-                    </dd>
+                    <dd>{keyWork}</dd>
                     {p.result && (
                       <>
                         <dt className="res">Result</dt>
@@ -57,6 +48,11 @@ export function G05Projects() {
                       </>
                     )}
                   </dl>
+                  {portrait && (
+                    <div className="proj-portrait">
+                      <ProjectImagePlaceholder image={portrait} />
+                    </div>
+                  )}
                   {below.length > 0 && (
                     <div className="proj-figs">
                       {below.map((f) => <ProjectImagePlaceholder key={f} image={f} ratio={16 / 9} />)}
