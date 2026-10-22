@@ -128,11 +128,11 @@ body {
 .tool-btn[aria-pressed="true"] { border-color: var(--ws-line); background: var(--ws-chrome-2); }
 .zoom-readout { min-width: 44px; text-align: center; font: 500 11px var(--f-mono); color: var(--ws-text); }
 
-/* — workspace: the sheet is a fixed 1680×1000 page scaled by --s — */
+/* — workspace: the sheet fills it; laid out at 1000px tall × --page-w and scaled by --s — */
 .workspace {
   position: relative;
   min-height: 0;
-  padding: 14px 16px;
+  padding: 0;
   display: flex;
   overflow: hidden;
   background-color: var(--ws-bg);
@@ -158,7 +158,6 @@ body {
   transform: scale(var(--s));
   transform-origin: 0 0;
   background: var(--paper);
-  box-shadow: 0 1px 0 rgba(0,0,0,.25), 0 14px 40px rgba(0,0,0,.35);
   padding: var(--frame);
 }
 

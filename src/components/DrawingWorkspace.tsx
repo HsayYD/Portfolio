@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight, Moon, Sun, ZoomIn, ZoomOut } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize, Minimize, Moon, Sun, ZoomIn, ZoomOut } from "lucide-react";
 import { profile } from "@/data/profile";
 import { sheets } from "@/data/sheets";
 import { DrawingSheet } from "./DrawingSheet";
@@ -9,9 +9,23 @@ import { SheetTabs } from "./SheetTabs";
 
 /** Zoom steps relative to "fit the whole sheet in the window". */
 const ZOOMS = [1, 1.25, 1.5, 2];
-/** Fixed sheet size in CSS px — every sheet is laid out on this page. */
-export const PAGE_W = 1680;
+/**
+ * The sheet is laid out at a fixed height of PAGE_H px; its width follows the
+ * screen's proportions (within limits) so the sheet fills the whole window.
+ */
 export const PAGE_H = 1000;
+const PAGE_W_MIN = 1560;
+const PAGE_W_MAX = 2300;
+
+const subscribeFs = (cb: () => void) => {
+  document.addEventListener("fullscreenchange", cb);
+  return () => document.removeEventListener("fullscreenchange", cb);
+};
+const isFs = () => !!document.fullscreenElement;
+const toggleFullscreen = () => {
+  if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+  else document.documentElement.requestFullscreen?.().catch(() => {});
+};
 
 const subscribeHash = (cb: () => void) => {
   window.addEventListener("hashchange", cb);
@@ -39,6 +53,8 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
   const lightWs = useSyncExternalStore(subscribeWs, isLightWs, () => false);
   const [zoom, setZoom] = useState(1);
   const [fit, setFit] = useState(1);
+  const [pageW, setPageW] = useState(1680);
+  const fullscreen = useSyncExternalStore(subscribeFs, isFs, () => false);
   const wsRef = useRef<HTMLDivElement>(null);
   const first = useRef(true);
 
@@ -50,7 +66,10 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
       const cs = getComputedStyle(el);
       const w = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       const h = el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-      if (w > 0 && h > 0) setFit(Math.min(w / PAGE_W, h / PAGE_H));
+      if (w <= 0 || h <= 0) return;
+      const pw = Math.round(Math.min(PAGE_W_MAX, Math.max(PAGE_W_MIN, (PAGE_H * w) / h)));
+      setPageW(pw);
+      setFit(Math.min(w / pw, h / PAGE_H));
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -87,6 +106,7 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
       if (e.key === "ArrowRight" || e.key === "]") { e.preventDefault(); select(active + 1); }
       else if (e.key === "ArrowLeft" || e.key === "[") { e.preventDefault(); select(active - 1); }
       else if (/^[0-7]$/.test(e.key)) { select(Number(e.key)); }
+      else if (e.key === "f" || e.key === "F") { e.preventDefault(); toggleFullscreen(); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -139,6 +159,17 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
 
         <button
           type="button"
+          className="tool-btn hide-sm"
+          onClick={toggleFullscreen}
+          aria-pressed={fullscreen}
+          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+          title={fullscreen ? "Exit full screen (F)" : "Full screen (F)"}
+        >
+          {fullscreen ? <Minimize width={15} height={15} aria-hidden="true" /> : <Maximize width={15} height={15} aria-hidden="true" />}
+        </button>
+
+        <button
+          type="button"
           className="tool-btn"
           onClick={toggleWorkspace}
           aria-pressed={lightWs}
@@ -166,7 +197,7 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
       <div
         className={`workspace ${zoom > 1 ? "zoomed" : ""}`}
         ref={wsRef}
-        style={{ ["--s" as string]: String(fit * zoom) }}
+        style={{ ["--s" as string]: String(fit * zoom), ["--page-w" as string]: `${pageW}px` }}
       >
         <DrawingSheet sheets={sheets} active={active} panels={panels} />
       </div>
