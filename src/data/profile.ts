@@ -90,7 +90,7 @@ export const experience: Role[] = [
       "Added AI-powered insights that summarise ideas and identify related items.",
       "Owned end-to-end development across frontend UI, backend APIs, database design, authentication, AI features and deployment.",
     ],
-    tools: ["Frontend UI", "Backend APIs", "Database design", "Authentication", "AI features", "Deployment"],
+    tools: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 18", "pgvector", "OpenAI", "Socket.IO", "Docker", "nginx"],
     outcomes: [],
     sheetLinks: [{ id: "g04", label: "G04 Software Engineering" }],
   },

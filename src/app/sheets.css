@@ -172,8 +172,26 @@
 .figs-foot.six figcaption { font-size: 0.62em; }
 
 /* ── G04 ─────────────────────────────────────────────────────────────── */
-.g04 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; }
-.g04 .stack > * + * { margin-top: 1.1em; }
+.g04 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 0.9fr); gap: 32px; align-items: start; }
+.g04-lede { font-size: 1.02em; margin: 0.2em 0 0.9em; }
+.g04-notes { font-size: 0.84em; margin-bottom: 0.9em; }
+.g04-notes > li { margin-bottom: 0.45em; }
+.g04-notes b { color: var(--ink); font-weight: 600; }
+.g04-p { font-size: 0.84em; margin: 0 0 0.45em; color: var(--ink-2); }
+.arch-layer.split2.even { grid-template-columns: 1fr 1fr; }
+.arch-layer.col, .arch-layer.split2 > div.col { flex-direction: column; align-items: flex-start; gap: 0.1em; }
+.arch-layer .muted { font-size: 0.74em; }
+.arch-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5em; }
+.arch-row .arch-layer { padding: 0.45em 0.6em; }
+.arch-mod.svc { padding: 0.6em 0.9em 0.7em; }
+.arch .arch-tag { font-size: 0.62em; }
+.g04-foot { display: grid; grid-template-columns: 290px 290px minmax(0, 1fr); gap: 18px; align-items: start; }
+.kfig { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+.kfig > div { padding: 0.55em 0.8em; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.kfig > div:nth-child(2n) { border-right: 0; }
+.kfig > div:nth-last-child(-n+2) { border-bottom: 0; }
+.kfig dt { font-size: 1.5em; font-weight: 600; color: var(--accent-ink); line-height: 1.1; }
+.kfig dd { margin: 0; font: 500 0.66em var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--annot); }
 .arch { margin: 0; }
 .arch-deploy { position: relative; border: 1px dashed var(--ink-2); padding: 1.5em 1em 1em; background: var(--paper); }
 .arch-tag { position: absolute; top: -0.7em; left: 0.8em; background: var(--paper); padding: 0 0.5em; }
@@ -248,6 +266,8 @@
   .figs3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .figs-foot, .figs-foot.two, .figs-foot.six { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .figs-foot > * + * { margin-top: 0 !important; }
+  .g04-foot .fig { max-width: 30em; }
+  .arch-row { grid-template-columns: 1fr; }
   .g03-foot .fig { max-width: 30em; }
   .flow { grid-template-columns: minmax(0, 1fr); }
   .flow li + li { border-left: 1px solid var(--ink); border-top: 0; }

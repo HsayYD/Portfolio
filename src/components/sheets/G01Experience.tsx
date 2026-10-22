@@ -99,7 +99,7 @@ export function G01Experience() {
       <div className="pg-foot g01-foot">
         {experience.map((r, idx) => (
           <div key={r.id} className="g01-tools">
-            <Sec n={`1.${idx + 1}`}>{r.employer} — {isMech(r) ? "tools & standards" : "scope"}</Sec>
+            <Sec n={`1.${idx + 1}`}>{r.employer} — {isMech(r) ? "tools & standards" : "stack"}</Sec>
             <ul className="tags">
               {r.tools.map((t) => (
                 <li key={t} className={`tag ${t.startsWith("EN ISO") ? "std" : ""}`}>{t}</li>
