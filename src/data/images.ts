@@ -100,7 +100,7 @@ export const images = {
     src: "/images/drone-project/prototype.jpg",
     full: "/images/drone-project/prototype-full.jpg",
     alt: "Coaxial photo-surveying drone prototype on the workbench: two contra-rotating rotors above a cylindrical body on a tripod stand",
-    ratio: 16 / 9,
+    ratio: 3 / 4,
     ready: true,
   },
   solarGeometry: {

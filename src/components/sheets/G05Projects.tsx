@@ -1,5 +1,5 @@
 import { academicProjects } from "@/data/profile";
-import type { ImageKey } from "@/data/images";
+import { images, type ImageKey } from "@/data/images";
 import { sheets } from "@/data/sheets";
 import { ProjectImagePlaceholder } from "../ProjectImagePlaceholder";
 import { Sec, SheetHeader } from "../SheetHeader";
@@ -21,31 +21,50 @@ export function G05Projects() {
                 </div>
               </div>
             </div>
-            <dl className="spec">
-              <dt>Objective</dt>
-              <dd>{p.objective}</dd>
-              <dt>Approach</dt>
-              <dd>{p.approach}</dd>
-              <dt>Tools</dt>
-              <dd>
-                <ul className="tags">{p.tools.map((t) => <li key={t} className="tag">{t}</li>)}</ul>
-              </dd>
-              <dt>Key work</dt>
-              <dd>
+            {(() => {
+              // A portrait photo sits beside the key work instead of below it.
+              const portrait = p.figures.find((f) => images[f as ImageKey].ratio < 1) as ImageKey | undefined;
+              const below = p.figures.filter((f) => f !== portrait) as ImageKey[];
+              const keyWork = (
                 <ol className="notes">{p.keyWork.map((k) => <li key={k}>{k}</li>)}</ol>
-              </dd>
-              {p.result && (
+              );
+              return (
                 <>
-                  <dt className="res">Result</dt>
-                  <dd className="res">{p.result}</dd>
+                  <dl className="spec">
+                    <dt>Objective</dt>
+                    <dd>{p.objective}</dd>
+                    <dt>Approach</dt>
+                    <dd>{p.approach}</dd>
+                    <dt>Tools</dt>
+                    <dd>
+                      <ul className="tags">{p.tools.map((t) => <li key={t} className="tag">{t}</li>)}</ul>
+                    </dd>
+                    <dt>Key work</dt>
+                    <dd>
+                      {portrait ? (
+                        <div className="kw-split">
+                          {keyWork}
+                          <ProjectImagePlaceholder image={portrait} />
+                        </div>
+                      ) : (
+                        keyWork
+                      )}
+                    </dd>
+                    {p.result && (
+                      <>
+                        <dt className="res">Result</dt>
+                        <dd className="res">{p.result}</dd>
+                      </>
+                    )}
+                  </dl>
+                  {below.length > 0 && (
+                    <div className="proj-figs">
+                      {below.map((f) => <ProjectImagePlaceholder key={f} image={f} ratio={16 / 9} />)}
+                    </div>
+                  )}
                 </>
-              )}
-            </dl>
-            {p.figures.length > 0 && (
-              <div className="proj-figs">
-                {p.figures.map((f) => <ProjectImagePlaceholder key={f} image={f as ImageKey} ratio={16 / 9} />)}
-              </div>
-            )}
+              );
+            })()}
           </article>
         ))}
       </div>
