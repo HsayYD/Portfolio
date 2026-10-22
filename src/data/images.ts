@@ -25,11 +25,11 @@ export const images = {
   /* G00 — optional portrait */
   portrait: {
     fig: "FIG. 00",
-    caption: "PORTRAIT (OPTIONAL)",
+    caption: "YASHASHWIN DORANALA",
     src: "/images/profile/portrait.jpg",
     alt: "Portrait of Yashashwin Doranala",
     ratio: 4 / 5,
-    ready: false,
+    ready: true,
   },
 
   /* G02 — Automated Platform Designer */
