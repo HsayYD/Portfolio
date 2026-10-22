@@ -64,70 +64,75 @@ export function G02PlatformDesigner() {
       <SheetHeader sheet={sheets[2]} />
 
       <div className="pg-main g02">
-        {/* — column 1: what it is, the result, the problem — */}
-        <div className="g02-col">
-          <div>
-            <div className="label">Flagship project · GPI India</div>
-            <p className="lede">
-              An automated platform designer that turns a 2D layout into a complete Solid Edge platform assembly,
-              built to EN&nbsp;ISO&nbsp;14122.
-            </p>
+        <div className="g02-text">
+          {/* — top: what it is, the problem, the result — */}
+          <div className="g02-top">
+            <div className="g02-col">
+              <div>
+                <div className="label">Flagship project · GPI India</div>
+                <p className="lede">
+                  An automated platform designer that turns a 2D layout into a complete Solid Edge platform
+                  assembly, built to EN&nbsp;ISO&nbsp;14122.
+                </p>
+              </div>
+              <section>
+                <Sec n="2.1">Engineering problem</Sec>
+                <p className="prose">
+                  Modelling an access platform by hand means building every floor panel, railing run, stair,
+                  opening, cross member and support individually: around 16–24 hours of repetitive CAD work per
+                  assembly.
+                </p>
+              </section>
+            </div>
+
+            <TechnicalCallout title="Modelling time — documented result" tone="mark" ref_="!">
+              <div className="big-result mono">
+                16–24 <small>HOURS</small> <span aria-hidden="true">→</span> 1–2 <small>MINUTES</small>
+              </div>
+              <TimeReduction />
+            </TechnicalCallout>
           </div>
 
-          <TechnicalCallout title="Modelling time — documented result" tone="mark" ref_="!">
-            <div className="big-result mono">
-              16–24 <small>HOURS</small> <span aria-hidden="true">→</span> 1–2 <small>MINUTES</small>
-            </div>
-            <TimeReduction />
-          </TechnicalCallout>
+          {/* — below: how it works — */}
+          <section className="how">
+            <Sec n="2.2">How it works</Sec>
+            <div className="how-steps">
+              <div className="how-step">
+                <h4><span className="balloon">A</span> Rules engine</h4>
+                <p>Runs on the drawing window&apos;s own server and works out the complete platform from the layout:</p>
+                <ul className="how-list">
+                  {computes.map((c) => <li key={c}>{c}</li>)}
+                </ul>
+                <p className="how-note">Every value is checked against <span className="tag std">EN ISO 14122</span></p>
+              </div>
 
-          <section>
-            <Sec n="2.1">Engineering problem</Sec>
-            <p className="prose">
-              Modelling an access platform by hand means building every floor panel, railing run, stair, opening,
-              cross member and support individually: around 16–24 hours of repetitive CAD work per assembly.
-            </p>
+              <div className="how-step">
+                <h4><span className="balloon">B</span> Build plan</h4>
+                <p>
+                  Lists every part with its template, dimensions, cuts and exact 3D position. Identical parts are
+                  merged into one part file, and every part gets a standard name and a position number:
+                </p>
+                <div className="pos-ranges" aria-label="Position number ranges">
+                  {ranges.map((x) => (
+                    <span key={x.r}><b className="mono">{x.r}</b> {x.g}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="how-step">
+                <h4><span className="balloon">C</span> Solid Edge add-in</h4>
+                <p>
+                  Builds the plan in Solid Edge&apos;s own process: copies a parametric template for each unique part
+                  (toeplate, cross member, baluster, stair tread…), sets variables such as length and lip cuts, and
+                  adds notches and mitres. It then places and mates every part as in the reference assemblies, locks
+                  each stair as a rigid set, and adds PathFinder groups and display configurations.
+                </p>
+              </div>
+            </div>
           </section>
         </div>
 
-        {/* — column 2: how it works — */}
-        <div className="g02-col how">
-          <Sec n="2.2">How it works</Sec>
-
-          <div className="how-step">
-            <h4><span className="balloon">A</span> Rules engine</h4>
-            <p>Runs on the drawing window&apos;s own server and works out the complete platform from the layout:</p>
-            <ul className="how-list">
-              {computes.map((c) => <li key={c}>{c}</li>)}
-            </ul>
-            <p className="how-note">Every value is checked against <span className="tag std">EN ISO 14122</span></p>
-          </div>
-
-          <div className="how-step">
-            <h4><span className="balloon">B</span> Build plan</h4>
-            <p>
-              Lists every part with its template, dimensions, cuts and exact 3D position. Identical parts are
-              merged into one part file, and every part gets a standard name and a position number:
-            </p>
-            <div className="pos-ranges" aria-label="Position number ranges">
-              {ranges.map((x) => (
-                <span key={x.r}><b className="mono">{x.r}</b> {x.g}</span>
-              ))}
-            </div>
-          </div>
-
-          <div className="how-step">
-            <h4><span className="balloon">C</span> Solid Edge add-in</h4>
-            <p>
-              Builds the plan in Solid Edge&apos;s own process: copies a parametric template for each unique part
-              (toeplate, cross member, baluster, stair tread…), sets variables such as length and lip cuts, and adds
-              notches and mitres. It then places and mates every part as in the reference assemblies, locks each
-              stair as a rigid set, and adds PathFinder groups and display configurations.
-            </p>
-          </div>
-        </div>
-
-        {/* — column 3: figures — */}
+        {/* — right: figures — */}
         <div className="g02-figs">
           <ProjectImagePlaceholder image="platformAssembly" />
           <div className="figs3">
