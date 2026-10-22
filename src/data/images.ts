@@ -6,6 +6,7 @@
  *  To replace a placeholder with a real image:
  *    1. Save the file at the `src` path below (inside /public).
  *    2. Set `ready: true` for that entry.
+ *    3. Optional: add `full` with a larger version for the click-to-enlarge view.
  *  The figure frame, number and caption stay exactly where they are.
  *
  *  `ratio` is width / height and reserves the layout space, so pick images
@@ -19,6 +20,8 @@ export type FigureDef = {
   alt: string;
   ratio: number;
   ready: boolean;
+  /** Optional larger file shown when the image is clicked (defaults to src). */
+  full?: string;
 };
 
 export const images = {
@@ -27,6 +30,7 @@ export const images = {
     fig: "FIG. 00",
     caption: "YASHASHWIN DORANALA",
     src: "/images/profile/portrait.jpg",
+    full: "/images/profile/portrait-full.jpg",
     alt: "Portrait of Yashashwin Doranala",
     ratio: 4 / 5,
     ready: true,
@@ -45,6 +49,7 @@ export const images = {
     fig: "FIG. 02.2",
     caption: "INPUT LAYOUT",
     src: "/images/platform-designer/input-layout.jpg",
+    full: "/images/platform-designer/input-layout-full.png",
     alt: "2D platform layout in the drawing window: a 9.000 × 2.000 deck with a 900 opening and two 800-wide stairs of 10 × 200 steps",
     ratio: 4 / 3,
     ready: true,
@@ -53,6 +58,7 @@ export const images = {
     fig: "FIG. 02.3",
     caption: "GENERATED MODEL",
     src: "/images/platform-designer/generated-model.jpg",
+    full: "/images/platform-designer/generated-model-full.jpg",
     alt: "Generated 3D platform model in the drawing window's viewer: deck, railings, two stairs, bracing and support legs",
     ratio: 4 / 3,
     ready: true,
@@ -61,6 +67,7 @@ export const images = {
     fig: "FIG. 02.4",
     caption: "STAIR DETAIL",
     src: "/images/platform-designer/detail-view.jpg",
+    full: "/images/platform-designer/detail-view-full.jpg",
     alt: "Generated stair in Solid Edge: stringers, treads and handrails",
     ratio: 4 / 3,
     ready: true,

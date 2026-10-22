@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type Re
 import { profile } from "@/data/profile";
 import { sheets } from "@/data/sheets";
 import { DrawingSheet } from "./DrawingSheet";
+import { Lightbox } from "./Lightbox";
 import { SheetTabs } from "./SheetTabs";
 
 /**
@@ -111,6 +112,8 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
       </div>
 
       <SheetTabs sheets={sheets} active={active} onSelect={select} />
+
+      <Lightbox />
 
       <footer className="statusbar">
         <span>SHEET <b>{s.code}</b> · {active + 1}/{sheets.length}</span>
