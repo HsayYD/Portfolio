@@ -96,7 +96,7 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
         <span className="file">
           <b>{profile.name}</b>
           <span className="hide-sm"> — Engineering drawing package · </span>
-          <span className="hide-sm">{profile.drawingPrefix}.dft</span>
+          <span className="hide-sm">portfolio.dft</span>
         </span>
         <span className="spacer" />
 
@@ -154,8 +154,6 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
 
       <footer className="statusbar">
         <span>SHEET <b>{s.code}</b> · {active + 1}/{sheets.length}</span>
-        <span>DWG <b>{s.drawingNo}</b></span>
-        <span>REV <b>{profile.revision}</b></span>
         <span className="grow">{profile.status} · {profile.availability.toUpperCase()}</span>
         <span>
           <kbd>←</kbd> <kbd>→</kbd> SHEETS · <kbd>0</kbd>–<kbd>7</kbd> JUMP

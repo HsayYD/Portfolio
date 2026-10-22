@@ -15,10 +15,6 @@ export function SheetHeader({ sheet, as = "h2" }: { sheet: SheetMeta; as?: "h1" 
       </div>
       <div className="meta">
         <div>
-          <span className="label">Drawing no.</span>
-          <div className="v">{sheet.drawingNo}</div>
-        </div>
-        <div>
           <span className="label">Scale</span>
           <div className="v">{sheet.scale}</div>
         </div>

@@ -5,66 +5,37 @@ import { ResumeDownload } from "./ResumeDownload";
 
 type Props = { sheet: SheetMeta; index: number; total: number };
 
-/** Manufacturing-drawing style title block; updates with the active sheet. */
+/**
+ * Compact manufacturing-drawing title block, sitting in the bottom-right
+ * corner of the sheet. Updates with the active sheet.
+ *
+ *  ┌──────────────┬────────────┬─────────────────┬──────────┐
+ *  │ YD  NAME     │ DISCIPLINE │ CONTACT         │ SHEET    │
+ *  │ positioning  ├────────────┤ email / phone / ├──────────┤
+ *  │              │ STATUS     │ LinkedIn        │ RESUME ↓ │
+ *  └──────────────┴────────────┴─────────────────┴──────────┘
+ */
 export function TitleBlock({ sheet, index, total }: Props) {
   const { contact } = profile;
   return (
     <div className="titleblock" aria-label="Title block">
-      <div className="tb-brand">
+      <div className="tb-id">
         <div className="mono-mark" aria-hidden="true">{profile.initials}</div>
-        <div className="nm">{profile.name}</div>
-        <div className="ds">{profile.positioning.replaceAll(" | ", " · ")}</div>
-      </div>
-
-      <div className="tb-title" aria-live="polite">
-        <span className="label">Drawing title</span>
-        <div className="v">{sheet.title}</div>
-      </div>
-
-      <div className="tb-row">
-        <div className="tb-cell">
-          <span className="label">Drawing no.</span>
-          <div className="v tb-dwg">{sheet.drawingNo}</div>
-        </div>
-        <div className="tb-cell">
-          <span className="label">Sheet</span>
-          <div className="v tb-dwg">
-            {index + 1} OF {total}
-          </div>
+        <div>
+          <div className="nm">{profile.name}</div>
+          <div className="ds">{profile.positioning.replaceAll(" | ", " · ")}</div>
         </div>
       </div>
 
-      <div className="tb-cell">
-        <span className="label">Author</span>
-        <div className="v">{profile.name.toUpperCase()}</div>
-      </div>
-
-      <div className="tb-cell">
+      <div className="tb-cell tb-disc">
         <span className="label">Discipline</span>
         <div className="v">{profile.discipline}</div>
       </div>
 
-      <div className="tb-row three">
-        <div className="tb-cell">
-          <span className="label">Rev</span>
-          <div className="v">{profile.revision}</div>
-        </div>
-        <div className="tb-cell">
-          <span className="label">Scale</span>
-          <div className="v">{sheet.scale}</div>
-        </div>
-        <div className="tb-cell">
-          <span className="label">Issued</span>
-          <div className="v">{profile.issued}</div>
-        </div>
-      </div>
-
-      <div className="tb-cell">
+      <div className="tb-cell tb-stat">
         <span className="label">Status</span>
         <div className="v tb-status status-lamp">{profile.status}</div>
-        <div className="v" style={{ fontSize: 11, color: "var(--annot)", marginTop: 2 }}>
-          {profile.availability}
-        </div>
+        <div className="v sub">{profile.availability}</div>
       </div>
 
       <div className="tb-cell tb-contact">
@@ -85,34 +56,17 @@ export function TitleBlock({ sheet, index, total }: Props) {
         </div>
       </div>
 
-      <div className="tb-actions">
-        <ResumeDownload />
+      <div className="tb-cell tb-sheet">
+        <span className="label">Sheet</span>
+        <div className="v tb-big" aria-live="polite">
+          {sheet.code} <span className="muted">·</span> {index + 1}/{total}
+        </div>
+        <div className="v sub">SCALE {sheet.scale}</div>
       </div>
 
-      <div className="tb-cell tb-rev">
-        <span className="label">Revisions</span>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">REV</th>
-              <th scope="col">DATE</th>
-              <th scope="col">DESCRIPTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...profile.revisions].reverse().map((r) => (
-              <tr key={r.rev}>
-                <td>{r.rev}</td>
-                <td>{r.date}</td>
-                <td>{r.note}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="tb-act">
+        <ResumeDownload label="Resume" />
       </div>
-
-      <div className="tb-fill" aria-hidden="true" />
-      <div className="tb-foot">DO NOT SCALE DRAWING · CONTENT PER RESUME</div>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import { profile } from "./profile";
-
 export type SheetMeta = {
   /** URL hash / DOM id, e.g. "g02" */
   id: string;
@@ -7,15 +5,14 @@ export type SheetMeta = {
   code: string;
   /** Tab label */
   tab: string;
-  /** Full drawing title shown in the title block */
+  /** Full drawing title shown in the sheet header */
   title: string;
   /** Short subtitle / scope line */
   scope: string;
-  drawingNo: string;
   scale: string;
 };
 
-const raw: Omit<SheetMeta, "drawingNo">[] = [
+export const sheets: SheetMeta[] = [
   { id: "g00", code: "G00", tab: "GENERAL", title: "GENERAL ARRANGEMENT", scope: "Introduction & overview", scale: "1:1" },
   { id: "g01", code: "G01", tab: "EXPERIENCE", title: "PROFESSIONAL EXPERIENCE", scope: "Employment record", scale: "1:1" },
   { id: "g02", code: "G02", tab: "PLATFORM DESIGNER", title: "AUTOMATED PLATFORM DESIGNER", scope: "Flagship project", scale: "NTS" },
@@ -25,10 +22,5 @@ const raw: Omit<SheetMeta, "drawingNo">[] = [
   { id: "g06", code: "G06", tab: "SKILLS & EDUCATION", title: "SKILLS & EDUCATION", scope: "Tools, methods & qualifications", scale: "1:1" },
   { id: "g07", code: "G07", tab: "CONTACT", title: "CONTACT & AVAILABILITY", scope: "Get in touch", scale: "1:1" },
 ];
-
-export const sheets: SheetMeta[] = raw.map((s, i) => ({
-  ...s,
-  drawingNo: `${profile.drawingPrefix}-${String(i + 1).padStart(3, "0")}`,
-}));
 
 export const sheetIndex = (id: string) => sheets.findIndex((s) => s.id === id);

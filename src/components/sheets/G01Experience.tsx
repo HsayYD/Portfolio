@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { experience, profile } from "@/data/profile";
+import { experience } from "@/data/profile";
 import { sheets } from "@/data/sheets";
 import { Sec, SheetHeader } from "../SheetHeader";
 import { TechnicalCallout } from "../TechnicalCallout";
@@ -9,8 +9,9 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 /** Month index (months since Jan 2026) for "Jun 2026" style strings. */
 function mIndex(s: string) {
   if (s === "Present") {
-    const [y, m] = profile.issued.split("-").map(Number);
-    return (y - 2026) * 12 + (m - 1) + 1;
+    // "Present" = the month the site was built (+1 so the bar covers it).
+    const now = new Date();
+    return (now.getFullYear() - 2026) * 12 + now.getMonth() + 1;
   }
   const [mon, yr] = s.split(" ");
   return (Number(yr) - 2026) * 12 + MONTHS.indexOf(mon);

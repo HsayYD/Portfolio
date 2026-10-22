@@ -32,15 +32,6 @@ export const profile = {
 
   languages: ["English", "Hindi", "Telugu", "Spanish"],
 
-  drawingPrefix: "YD-PORT",
-  /** Current revision = last entry in `revisions`. Add a row for each update. */
-  revisions: [
-    { rev: "A", date: "2026-10-20", note: "INITIAL PORTFOLIO RELEASE" },
-    { rev: "B", date: "2026-10-22", note: "PUBLISHED TO WEB" },
-  ],
-  get revision() { return this.revisions[this.revisions.length - 1].rev; },
-  get revisionNote() { return this.revisions[this.revisions.length - 1].note; },
-  issued: "2026-10",
   siteUrl: "https://yashashwin-portfolio.vercel.app",
 };
 
