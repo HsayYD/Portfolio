@@ -11,7 +11,7 @@ type Props = {
 /**
  * Figure frame for project imagery. Shows a drafted placeholder until the
  * entry in images.ts is marked `ready: true`, then renders the real image in
- * the same reserved space — no layout changes needed. Real images can be
+ * the same reserved space: no layout changes needed. Real images can be
  * clicked to open full size.
  */
 export function ProjectImagePlaceholder({ image, ratio, className = "" }: Props) {
@@ -27,7 +27,7 @@ export function ProjectImagePlaceholder({ image, ratio, className = "" }: Props)
             type="button"
             className="fig-open"
             data-full={def.full ?? def.src}
-            data-caption={`${def.fig} — ${def.caption}`}
+            data-caption={`${def.fig} · ${def.caption}`}
             data-alt={def.alt}
             aria-label={`Enlarge ${def.fig}: ${def.caption.toLowerCase()}`}
           >

@@ -1,6 +1,6 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  PROFILE DATA — single source of truth for all resume details.
+ *  PROFILE DATA: single source of truth for all resume details.
  *  Source: Yashashwin_Doranala_Resume.docx. Edit here; nothing else needs
  *  to change when the resume is updated.
  * ─────────────────────────────────────────────────────────────────────────
@@ -60,9 +60,9 @@ export const experience: Role[] = [
     start: "Jun 2026",
     end: "Present",
     summary:
-      "Design, drafting and manufacturing documentation for equipment across GPI’s batter-line process — plus CAD automation tools that remove repetitive modelling work.",
+      "Design, drafting and manufacturing documentation for equipment across GPI’s batter-line process, plus CAD automation tools that remove repetitive modelling work.",
     responsibilities: [
-      "Modelled and drafted equipment across GPI’s batter-line process, including powder hoppers, batter tanks and associated assemblies — translating lead engineers’ specifications into detailed 3D models, fully defined 2D manufacturing drawings, sections, detail views and assembly documentation.",
+      "Modelled and drafted equipment across GPI’s batter-line process, including powder hoppers, batter tanks and associated assemblies, translating lead engineers’ specifications into detailed 3D models, fully defined 2D manufacturing drawings, sections, detail views and assembly documentation.",
       "Prepared manufacturing documentation including special-component drawings, laser-cut DXF files created in ProgeCAD and sheet-metal bend drawings in Solid Edge; uploaded them to Ridder iQ ERP to support fabrication and assembly.",
       "Created and maintained Bills of Materials in Ridder iQ ERP with associated CAD and manufacturing files, supporting accurate documentation and traceability.",
       "Followed lead-engineer specifications and drawing standards, including EN ISO 13920 for general tolerances on welded constructions.",
@@ -126,7 +126,7 @@ export const education: Education[] = [
     institution: "Torrey Pines High School",
     qualification: "High school",
     dates: "2020 – 2024",
-    status: "—",
+    status: "",
   },
 ];
 
@@ -195,14 +195,14 @@ export const academicProjects: AcademicProject[] = [
     id: "drone",
     ref: "P1",
     title: "Coaxial Photo-Surveying Drone",
-    context: "Design, manufacture and test — University of Liverpool",
+    context: "Design, manufacture and test · University of Liverpool",
     dates: "Sep 2024 – Apr 2025",
     objective: "Design, manufacture and test a coaxial-rotor drone for photographic surveying, from customer requirements and UK standards.",
     approach: "Full CAD definition and GD&T drawings, hand-built MATLAB FE models for critical parts, then manufacture and avionics integration.",
     tools: ["Creo", "Autodesk Fusion", "MATLAB", "Pixhawk"],
     keyWork: [
       "Created full 3D CAD assemblies and GD&T manufacturing drawings; coordinated 3D printing, CNC and laser cutting.",
-      "Wrote MATLAB finite-element models — stiffness matrices, boundary conditions, nodal displacements and stresses — for the critical load-bearing parts.",
+      "Wrote MATLAB finite-element models (stiffness matrices, boundary conditions, nodal displacements and stresses) for the critical load-bearing parts.",
       "Integrated a Pixhawk flight controller with GPS, ESCs, BLDC motors and swashplate servos; prepared the design reports and BOM.",
     ],
     result: null,
@@ -231,7 +231,7 @@ export const academicProjects: AcademicProject[] = [
     context: "B.Tech thesis",
     dates: "Jan 2024 – Jun 2024",
     objective: "Improve the thermo-hydraulic performance of a parabolic trough absorber.",
-    approach: "ANSYS Fluent model of an absorber with grooves and ribs — RNG k-ε turbulence, two-phase nanofluid, user-defined functions.",
+    approach: "ANSYS Fluent model of an absorber with grooves and ribs: RNG k-ε turbulence, two-phase nanofluid, user-defined functions.",
     tools: ["ANSYS Fluent", "UDFs"],
     keyWork: [
       "Modelled grooved and ribbed absorber geometries in 3D.",

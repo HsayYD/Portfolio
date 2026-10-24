@@ -41,7 +41,7 @@ export function G03CadAutomation() {
           <figcaption className="sys-legend">
             <span><i className="sw solid" /> Documented capability</span>
             <span><i className="sw dashed" /> Illustrative detail</span>
-            <span className="label">Fig. 03.0 — Natural-language to CAD data flow</span>
+            <span className="label">Fig. 03.0 · Natural-language to CAD data flow</span>
           </figcaption>
         </figure>
 

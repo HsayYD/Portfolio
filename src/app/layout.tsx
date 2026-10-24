@@ -12,11 +12,11 @@ import "./sheets.css";
 import { profile } from "@/data/profile";
 
 const description =
-  "Yashashwin Doranala — Mechanical Design Engineer specialising in Solid Edge, manufacturing drawings, CAD automation and engineering software. Built an automated platform designer that cuts modelling time from 16–24 hours to 1–2 minutes.";
+  "Yashashwin Doranala, Mechanical Design Engineer specialising in Solid Edge, manufacturing drawings, CAD automation and engineering software. Built an automated platform designer that cuts modelling time from 16–24 hours to 1–2 minutes.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
-  title: `${profile.name} — Mechanical Design Engineer | CAD Automation`,
+  title: `${profile.name} | Mechanical Design Engineer | CAD Automation`,
   description,
   authors: [{ name: profile.name }],
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Yashashwin Doranala",
   ],
   openGraph: {
-    title: `${profile.name} — Engineering Drawing Package`,
+    title: `${profile.name} | Engineering Drawing Package`,
     description,
     type: "profile",
   },

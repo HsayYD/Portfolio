@@ -65,7 +65,7 @@ export function G02PlatformDesigner() {
 
       <div className="pg-main g02">
         <div className="g02-text">
-          {/* — top: what it is, the problem, the result — */}
+          {/* top: what it is, the problem, the result */}
           <div className="g02-top">
             <div className="g02-col">
               <div>
@@ -85,7 +85,7 @@ export function G02PlatformDesigner() {
               </section>
             </div>
 
-            <TechnicalCallout title="Modelling time — documented result" tone="mark" ref_="!">
+            <TechnicalCallout title="Modelling time · documented result" tone="mark" ref_="!">
               <div className="big-result mono">
                 16–24 <small>HOURS</small> <span aria-hidden="true">→</span> 1–2 <small>MINUTES</small>
               </div>
@@ -93,7 +93,7 @@ export function G02PlatformDesigner() {
             </TechnicalCallout>
           </div>
 
-          {/* — below: how it works — */}
+          {/* below: how it works */}
           <section className="how">
             <Sec n="2.2">How it works</Sec>
             <div className="how-steps">
@@ -132,7 +132,7 @@ export function G02PlatformDesigner() {
           </section>
         </div>
 
-        {/* — right: figures — */}
+        {/* right: figures */}
         <div className="g02-figs">
           <ProjectImagePlaceholder image="platformAssembly" />
           <div className="figs3">

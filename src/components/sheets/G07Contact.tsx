@@ -26,7 +26,7 @@ export function G07Contact() {
           </p>
 
           <div className="g00-actions">
-            <a className="btn primary" href={`mailto:${contact.email}?subject=${encodeURIComponent("Opportunity — Mechanical Design / CAD Automation")}`}>
+            <a className="btn primary" href={`mailto:${contact.email}?subject=${encodeURIComponent("Opportunity: Mechanical Design / CAD Automation")}`}>
               <Mail aria-hidden="true" /> Email me
             </a>
             <ResumeDownload variant="plain" />
@@ -69,7 +69,7 @@ export function G07Contact() {
           <li>CAD automation and customisation: Solid Edge COM API, design tools, AI-assisted modelling.</li>
           <li>Engineering software: tools that sit between CAD, ERP and the people using them.</li>
         </ol>
-        <p className="end-note label">— End of drawing package · {sheets.length} sheets —</p>
+        <p className="end-note label">End of drawing package · {sheets.length} sheets</p>
       </div>
     </>
   );

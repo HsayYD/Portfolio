@@ -14,6 +14,7 @@ import { SheetTabs } from "./SheetTabs";
 export const PAGE_H = 1000;
 const PAGE_W_MIN = 1510;
 const PAGE_W_MAX = 2300;
+const PX_TO_MM = 25.4 / 96;
 
 const toggleFullscreen = () => {
   if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
@@ -42,8 +43,9 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
   const [pageW, setPageW] = useState(1680);
   const wsRef = useRef<HTMLDivElement>(null);
   const first = useRef(true);
+  const xyRef = useRef<HTMLSpanElement>(null);
 
-  /* — fit the fixed-size sheet to the available workspace — */
+  /* fit the fixed-size sheet to the available workspace */
   useEffect(() => {
     const el = wsRef.current;
     if (!el) return;
@@ -62,17 +64,17 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
     return () => ro.disconnect();
   }, []);
 
-  /* — active sheet lives in the URL hash (linkable, back button works) — */
+  /* active sheet lives in the URL hash (linkable, back button works) */
   const select = useCallback((i: number) => {
     if (i < 0 || i >= sheets.length) return;
     const id = sheets[i].id;
     if (window.location.hash !== `#${id}`) window.location.hash = id;
   }, []);
 
-  /* — side effects of a sheet change — */
+  /* side effects of a sheet change */
   useEffect(() => {
     const s = sheets[active];
-    document.title = `${s.code} ${s.title} — ${profile.name}`;
+    document.title = `${s.code} ${s.title} | ${profile.name}`;
     if (first.current) { first.current = false; return; }
     const ws = wsRef.current;
     if (ws) ws.scrollTo({ top: 0, left: 0 });
@@ -82,7 +84,7 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
     }
   }, [active]);
 
-  /* — keyboard shortcuts — */
+  /* keyboard shortcuts */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -96,6 +98,46 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [active, select]);
+
+  /* keyboard-driven sheet changes skip the fade; pointer ones keep it */
+  useEffect(() => {
+    const content = document.getElementById("content");
+    if (!content) return;
+    const onKey = () => { content.dataset.instant = ""; };
+    const onPointer = () => { delete content.dataset.instant; };
+    window.addEventListener("keydown", onKey, true);
+    window.addEventListener("pointerdown", onPointer, true);
+    return () => {
+      window.removeEventListener("keydown", onKey, true);
+      window.removeEventListener("pointerdown", onPointer, true);
+    };
+  }, []);
+
+  /* CAD-style cursor coordinates (mm on the unscaled page) in the status bar.
+       Written straight to the DOM so pointer movement never re-renders. */
+  useEffect(() => {
+    const sheet = wsRef.current?.querySelector<HTMLElement>(".sheet");
+    const out = xyRef.current;
+    if (!sheet || !out || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const r = sheet.getBoundingClientRect();
+        const k = PAGE_H / r.height; // undo the fit-to-window scale
+        const fmt = (px: number) => (Math.max(0, px) * k * PX_TO_MM).toFixed(1).padStart(5, "\u2007");
+        out.textContent = `X ${fmt(e.clientX - r.left)}  Y ${fmt(e.clientY - r.top)} mm`;
+      });
+    };
+    const onLeave = () => { cancelAnimationFrame(frame); out.textContent = "X  -    Y  -   mm"; };
+    sheet.addEventListener("pointermove", onMove);
+    sheet.addEventListener("pointerleave", onLeave);
+    return () => {
+      cancelAnimationFrame(frame);
+      sheet.removeEventListener("pointermove", onMove);
+      sheet.removeEventListener("pointerleave", onLeave);
+    };
+  }, []);
 
   const s = sheets[active];
 
@@ -118,6 +160,7 @@ export function DrawingWorkspace({ panels }: { panels: Record<string, ReactNode>
       <footer className="statusbar">
         <span>SHEET <b>{s.code}</b> · {active + 1}/{sheets.length}</span>
         <span className="grow">{profile.status} · {profile.availability.toUpperCase()}</span>
+        <span className="cursor-xy" ref={xyRef} aria-hidden="true">X  -    Y  -   mm</span>
         <span>
           <kbd>←</kbd> <kbd>→</kbd> SHEETS · <kbd>0</kbd>–<kbd>7</kbd> JUMP · <kbd>F</kbd> FULL SCREEN
         </span>

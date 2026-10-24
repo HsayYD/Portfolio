@@ -30,7 +30,7 @@ export function DrawingSheet({ sheets, active, panels }: Props) {
           <main id="content" className="content" tabIndex={-1}>
             <details className="tb-mobile">
               <summary>
-                <span className="label" style={{ fontSize: 10 }}>Contact</span>
+                <span className="label tbm-label">Contact</span>
                 <span className="pill">{profile.availability}</span>
                 <ChevronDown className="chev" width={16} height={16} aria-hidden="true" />
               </summary>

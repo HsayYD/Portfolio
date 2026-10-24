@@ -35,7 +35,7 @@ export function G00General() {
 
       <div className="pg-main g00">
         <div className="g00-intro">
-          <div className="label">Engineer of record</div>
+          <div className="label">Drawn by</div>
           <h1 className="name-plate">
             <span>Yashashwin</span>
             <span>Doranala</span>
@@ -50,13 +50,13 @@ export function G00General() {
 
           <div className="g00-actions">
             <a className="btn primary" href="#g02">
-              View flagship project — G02
+              View flagship project · G02
               <ArrowRight aria-hidden="true" />
             </a>
             <ResumeDownload variant="plain" />
           </div>
 
-          <a href="#g02" className="hl" aria-label="Platform modelling time reduced from 16 to 24 hours to 1 to 2 minutes — see sheet G02">
+          <a href="#g02" className="hl" aria-label="Platform modelling time reduced from 16 to 24 hours to 1 to 2 minutes, see sheet G02">
             <span className="label">Key result · automated platform designer</span>
             <span className="hl-row">
               <span className="hl-before">16–24 h</span>

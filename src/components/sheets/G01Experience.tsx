@@ -30,12 +30,14 @@ function Timeline() {
           return (
             <div className="tl-row" key={r.id}>
               <span className="tl-name mono">{r.employer.toUpperCase()}</span>
+              {/* Phones: dates sit beside the name, the bar is too short to hold them */}
+              <span className="tl-when mono">{r.start} – {r.end}</span>
               <span className="tl-track">
                 <span
                   className={`tl-bar ${r.track === "MECHANICAL DESIGN" ? "mech" : "soft"}`}
                   style={{ left: `${(a / span) * 100}%`, width: `${((b - a) / span) * 100}%` }}
                 >
-                  {r.start} – {r.end}
+                  <span className="tl-txt">{r.start} – {r.end}</span>
                 </span>
               </span>
             </div>
@@ -53,7 +55,7 @@ function Timeline() {
         </span>
       </div>
       <figcaption className="tl-cap">
-        <span className="label">Fig. 01.1 — Employment timeline, 2026</span>
+        <span className="label">Fig. 01.1 · Employment timeline, 2026</span>
         <span><i className="sw mech" /> Mechanical design &amp; CAD automation</span>
         <span><i className="sw soft" /> Software engineering</span>
       </figcaption>
@@ -78,7 +80,7 @@ export function G01Experience() {
                 <div className="role-ttl">
                   <span className="label">{r.track}</span>
                   <h3>
-                    {r.employer} <span className="muted">—</span> {r.title}
+                    {r.employer} <span className="muted">·</span> {r.title}
                   </h3>
                 </div>
                 <div className="role-dates mono">
@@ -99,7 +101,7 @@ export function G01Experience() {
       <div className="pg-foot g01-foot">
         {experience.map((r, idx) => (
           <div key={r.id} className="g01-tools">
-            <Sec n={`1.${idx + 1}`}>{r.employer} — {isMech(r) ? "tools & standards" : "stack"}</Sec>
+            <Sec n={`1.${idx + 1}`}>{r.employer} · {isMech(r) ? "tools & standards" : "stack"}</Sec>
             <ul className="tags">
               {r.tools.map((t) => (
                 <li key={t} className={`tag ${t.startsWith("EN ISO") ? "std" : ""}`}>{t}</li>

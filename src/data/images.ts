@@ -1,6 +1,6 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  IMAGE REGISTRY — every project figure on the site is defined here.
+ *  IMAGE REGISTRY: every project figure on the site is defined here.
  * ─────────────────────────────────────────────────────────────────────────
  *
  *  To replace a placeholder with a real image:
@@ -25,7 +25,7 @@ export type FigureDef = {
 };
 
 export const images = {
-  /* G00 — optional portrait */
+  /* G00: optional portrait */
   portrait: {
     fig: "FIG. 00",
     caption: "YASHASHWIN DORANALA",
@@ -36,7 +36,7 @@ export const images = {
     ready: true,
   },
 
-  /* G02 — Automated Platform Designer */
+  /* G02: Automated Platform Designer */
   platformAssembly: {
     fig: "FIG. 02.1",
     caption: "GENERATED PLATFORM ASSEMBLY",
@@ -73,7 +73,7 @@ export const images = {
     ready: true,
   },
 
-  /* G03 — CAD Automation */
+  /* G03: CAD Automation */
   claudeManhole: {
     fig: "FIG. 03.1",
     caption: "MANHOLE BUILT BY CLAUDE",
@@ -93,10 +93,10 @@ export const images = {
     ready: true,
   },
 
-  /* G05 — Academic projects */
+  /* G05: Academic projects */
   dronePrototype: {
     fig: "FIG. 05.1",
-    caption: "DRONE — PROTOTYPE",
+    caption: "DRONE · PROTOTYPE",
     src: "/images/drone-project/prototype.jpg",
     full: "/images/drone-project/prototype-full.jpg",
     alt: "Coaxial photo-surveying drone prototype on the workbench: two contra-rotating rotors above a cylindrical body on a tripod stand",

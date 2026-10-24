@@ -85,7 +85,7 @@ function Architecture() {
         </div>
       </div>
       <figcaption className="label" style={{ marginTop: "0.5em" }}>
-        Fig. 04.0 — System architecture (simplified)
+        Fig. 04.0 · System architecture (simplified)
       </figcaption>
     </figure>
   );
