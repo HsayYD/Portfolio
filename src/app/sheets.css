@@ -279,7 +279,12 @@
   .tl-axis { grid-template-columns: minmax(0, 1fr); }
   .tl-axis .tl-name { display: none; }
   .tl-axis i:nth-child(even) { color: transparent; }
-  .tr-row { grid-template-columns: 6.5em minmax(0, 1fr) 4.4em; }
+  /* time-reduction chart: label + value on one line, full-width bar and scale below */
+  .tr { gap: 0.7em; }
+  .tr-row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.3em 0.8em; }
+  .tr-row > .tr-track, .tr-row > .tr-scale { grid-column: 1 / -1; grid-row: 2; }
+  .tr-row > span:empty { display: none; }
+  .tr-row > .tr-scale { grid-row: 1; }
   .role-head { grid-template-columns: auto minmax(0, 1fr); }
   .role-dates { grid-column: 2; justify-self: start; }
   .figs3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
