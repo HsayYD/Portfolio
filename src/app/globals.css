@@ -683,6 +683,9 @@ p, li, dd, td { text-wrap: pretty; }
   .sh-head { grid-template-columns: auto minmax(0, 1fr); }
   .sh-head .meta { display: none; }
   .g2, .g3, .split, .split.rev { grid-template-columns: minmax(0, 1fr); }
+  /* narrow thumbnail columns: figure number above the caption instead of colliding */
+  .fig figcaption { flex-wrap: wrap; gap: 0.1em 0.6em; }
+  .fig figcaption span { min-width: 0; overflow-wrap: anywhere; }
 }
 
 @media (max-width: 560px) {
