@@ -194,11 +194,11 @@ export function G02PlatformDesigner() {
           </ol>
         </section>
         <section className="g02-std">
-          <Sec n="2.5">Rebuilds &amp; recovery</Sec>
+          <Sec n="2.5">Edit in Solid Edge</Sec>
           <ul className="how-list tight">
-            <li>Layout and build plan are saved next to the assembly, so the design can be reopened and edited.</li>
-            <li>Rebuilds reuse unchanged parts: if only the support changed, only the support is rebuilt.</li>
-            <li>A build record is written before each build, so a half-finished build can be recovered after a crash.</li>
+            <li>Each build also writes editable Solid Edge sketches into the assembly: the platform plan and a support side view per edge, with labelled lines and dimensions.</li>
+            <li>Edit them in Solid Edge (move a leg, add a brace, change a height); <b>Update from sketches</b> reads the edits back and <b>Rebuild</b> updates the model.</li>
+            <li>Rebuilds reuse unchanged parts, and a build record makes a crashed build recoverable.</li>
           </ul>
         </section>
       </div>
