@@ -27,7 +27,7 @@ const pipeline = [
   { n: "04", t: "Solid Edge add-in", d: "C# builds the parts and the mated assembly through the Solid Edge COM API, with a progress window." },
 ];
 
-/** The software behind it: a web front end and one C# builder shared by two .NET hosts. */
+/** The software behind it: a web front end and a C# builder running inside Solid Edge. */
 const stack = [
   {
     ref: "L1",
@@ -38,20 +38,14 @@ const stack = [
   {
     ref: "L2",
     t: "Builder core",
-    tags: ["C#", ".NET 9", ".NET Framework 4.8"],
-    d: "One builder library, compiled into both .NET hosts.",
+    tags: ["C#", ".NET Framework 4.8", "Solid Edge COM API"],
+    d: "Part files, sketches, variables, assembly relations, position numbers and part reuse.",
   },
   {
     ref: "L3",
     t: "Solid Edge add-in",
-    tags: ["COM", "WebView2", "WinForms"],
-    d: "Ribbon and EdgeBar pane; builds in-process: 95\u00a0s vs 339\u00a0s.",
-  },
-  {
-    ref: "L4",
-    t: "Automation service",
-    tags: ["ASP.NET Core", "COM interop"],
-    d: "Local HTTP API; every COM call queued on one STA thread.",
+    tags: ["COM add-in", "WebView2", "WinForms"],
+    d: "Ribbon commands and an EdgeBar pane. Builds run inside Solid Edge: 95\u00a0s vs 339\u00a0s out of process.",
   },
 ];
 

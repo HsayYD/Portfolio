@@ -160,7 +160,7 @@ export const skills: SkillGroup[] = [
   {
     ref: "S4",
     group: "CAD automation & programming",
-    items: ["Solid Edge COM API automation", "C# (.NET 9, .NET Framework 4.8)", "Solid Edge COM add-ins", "ASP.NET Core", "Python", "C"],
+    items: ["Solid Edge COM API automation", "C# (.NET Framework 4.8)", "Solid Edge COM add-ins", "Python", "C"],
   },
   {
     ref: "S5",
