@@ -69,7 +69,7 @@ export const experience: Role[] = [
       "Developed an MCP integration for Claude with Solid Edge COM automation, letting engineers describe requirements in natural language and generate tailored 3D CAD models.",
       "Developed an automated platform designer that converts 2D layouts into complete platform assemblies in accordance with EN ISO 14122.",
     ],
-    tools: ["Solid Edge", "ProgeCAD", "Ridder iQ ERP", "Solid Edge COM API", "MCP", "EN ISO 13920", "EN ISO 14122"],
+    tools: ["Solid Edge", "ProgeCAD", "Ridder iQ ERP", "Solid Edge COM API", "C# / .NET", "MCP", "EN ISO 13920", "EN ISO 14122"],
     outcomes: [{ value: "16–24 h → 1–2 min", label: "Platform modelling time" }],
     sheetLinks: [
       { id: "g02", label: "G02 Platform Designer" },
@@ -160,7 +160,7 @@ export const skills: SkillGroup[] = [
   {
     ref: "S4",
     group: "CAD automation & programming",
-    items: ["Solid Edge COM API automation", "C#", "Python", "C"],
+    items: ["Solid Edge COM API automation", "C# (.NET 9, .NET Framework 4.8)", "Solid Edge COM add-ins", "ASP.NET Core", "Python", "C"],
   },
   {
     ref: "S5",

@@ -146,6 +146,10 @@
 .flow-n { font-size: 0.75em; color: var(--accent); font-weight: 600; }
 .flow-t { font: 600 0.88em var(--f-cond); letter-spacing: 0.06em; text-transform: uppercase; }
 .flow-d { font-size: 0.76em; color: var(--ink-2); line-height: 1.35; }
+.stack { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stack > li { display: flex; flex-direction: column; gap: 0.3em; margin: 0; padding: 0.5em 0.7em 0.55em; border: 1px solid var(--ink); background: var(--paper); }
+.stack > li + li { border-left: 0; }
+.stack .tag { font-size: 0.66em; }
 
 /* ── G03 ─────────────────────────────────────────────────────────────── */
 .g03 { display: flex; flex-direction: column; gap: 16px; }
@@ -293,6 +297,8 @@
   .arch-row { grid-template-columns: 1fr; }
   .g03-foot .fig { max-width: 30em; }
   .flow { grid-template-columns: minmax(0, 1fr); }
+  .stack { grid-template-columns: minmax(0, 1fr); }
+  .stack > li + li { border-left: 1px solid var(--ink); border-top: 0; }
   .flow li + li { border-left: 1px solid var(--ink); border-top: 0; }
   .flow li + li::before { left: 1.2em; top: -6px; border: 5px solid transparent; border-top: 6px solid var(--ink); border-bottom: 0; }
   .sys-flow { grid-template-columns: minmax(0, 1fr); row-gap: 1.6em; }

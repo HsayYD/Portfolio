@@ -24,7 +24,35 @@ const pipeline = [
   { n: "01", t: "Layout", d: "Platform drawn in the 2D drawing window." },
   { n: "02", t: "Rules engine", d: "Works out every part on the window's own server; checks each value against EN ISO 14122." },
   { n: "03", t: "Build plan", d: "Every part with template, dimensions, cuts and 3D position; merged, named and numbered." },
-  { n: "04", t: "Solid Edge add-in", d: "Builds the parts and the mated assembly inside Solid Edge, with a progress window." },
+  { n: "04", t: "Solid Edge add-in", d: "C# builds the parts and the mated assembly through the Solid Edge COM API, with a progress window." },
+];
+
+/** The software behind it: a web front end and one C# builder shared by two .NET hosts. */
+const stack = [
+  {
+    ref: "L1",
+    t: "Drawing window",
+    tags: ["Next.js", "React", "TypeScript"],
+    d: "2D editor and 3D preview; rules run server-side. 280+ unit tests.",
+  },
+  {
+    ref: "L2",
+    t: "Builder core",
+    tags: ["C#", ".NET 9", ".NET Framework 4.8"],
+    d: "One builder library, compiled into both .NET hosts.",
+  },
+  {
+    ref: "L3",
+    t: "Solid Edge add-in",
+    tags: ["COM", "WebView2", "WinForms"],
+    d: "Ribbon and EdgeBar pane; builds in-process: 95\u00a0s vs 339\u00a0s.",
+  },
+  {
+    ref: "L4",
+    t: "Automation service",
+    tags: ["ASP.NET Core", "COM interop"],
+    d: "Local HTTP API; every COM call queued on one STA thread.",
+  },
 ];
 
 function TimeReduction() {
@@ -122,13 +150,28 @@ export function G02PlatformDesigner() {
               <div className="how-step">
                 <h4><span className="balloon">C</span> Solid Edge add-in</h4>
                 <p>
-                  Builds the plan in Solid Edge&apos;s own process: copies a parametric template for each unique part
+                  A C# COM add-in builds the plan in Solid Edge&apos;s own process: copies a parametric template for each unique part
                   (toeplate, cross member, baluster, stair tread…), sets variables such as length and lip cuts, and
                   adds notches and mitres. It then places and mates every part as in the reference assemblies, locks
                   each stair as a rigid set, and adds PathFinder groups and display configurations.
                 </p>
               </div>
             </div>
+          </section>
+
+          <section>
+            <Sec n="2.3">Software architecture</Sec>
+            <ol className="stack">
+              {stack.map((s) => (
+                <li key={s.ref}>
+                  <span className="flow-t"><span className="flow-n mono">{s.ref}</span> {s.t}</span>
+                  <ul className="tags">
+                    {s.tags.map((t) => <li key={t} className="tag">{t}</li>)}
+                  </ul>
+                  <span className="flow-d">{s.d}</span>
+                </li>
+              ))}
+            </ol>
           </section>
         </div>
 
@@ -145,7 +188,7 @@ export function G02PlatformDesigner() {
 
       <div className="pg-foot g02-foot">
         <section>
-          <Sec n="2.3">Build pipeline</Sec>
+          <Sec n="2.4">Build pipeline</Sec>
           <ol className="flow">
             {pipeline.map((w) => (
               <li key={w.n}>
@@ -157,7 +200,7 @@ export function G02PlatformDesigner() {
           </ol>
         </section>
         <section className="g02-std">
-          <Sec n="2.4">Rebuilds &amp; recovery</Sec>
+          <Sec n="2.5">Rebuilds &amp; recovery</Sec>
           <ul className="how-list tight">
             <li>Layout and build plan are saved next to the assembly, so the design can be reopened and edited.</li>
             <li>Rebuilds reuse unchanged parts: if only the support changed, only the support is rebuilt.</li>
